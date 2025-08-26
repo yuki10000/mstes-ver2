@@ -11,7 +11,7 @@ const router = createRouter({
     {
       path: '/exercise',
       name: 'Exercise',
-      component: () => import('../pages/Exercise.vue'),
+      component: () => import('../pages/ExerciseView.vue'),
     },
     {
       path: '/:pathMatch(.*)*',

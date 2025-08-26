@@ -1,8 +1,6 @@
-
 <script setup lang="ts">
 // 今後atomic designのコンポーネントをimportして利用可能
 </script>
-
 
 <template>
   <main>
