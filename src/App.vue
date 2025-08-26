@@ -1,11 +1,17 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+// 今後atomic designのコンポーネントをimportして利用可能
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <main>
+    <router-view />
+  </main>
 </template>
 
-<style scoped></style>
+<style scoped>
+main {
+  min-height: 100vh;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+</style>
