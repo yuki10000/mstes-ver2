@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -27,13 +26,13 @@ const router = createRouter({
 
 // ページタイトルを動的に変更
 router.beforeEach((to, from, next) => {
-  const baseTitle = '段階的翻訳演習';
+  const baseTitle = '段階的翻訳演習'
   if (to.meta && to.meta.title) {
-    document.title = `${baseTitle} | ${to.meta.title}`;
+    document.title = `${baseTitle} | ${to.meta.title}`
   } else {
-    document.title = baseTitle;
+    document.title = baseTitle
   }
-  next();
-});
+  next()
+})
 
 export default router
