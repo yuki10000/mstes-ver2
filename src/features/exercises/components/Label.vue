@@ -12,7 +12,5 @@ const props = defineProps<{
   isLineUpper?: boolean
   isLineLower?: boolean
 }>()
-
-console.log('Label props:', props)
 </script>
 Ï
