@@ -1,14 +1,17 @@
 <template>
   <v-card class="pa-2 d-inline-flex align-center" elevation="2" style="width: auto; height: auto">
     <div class="d-inline-flex align-center">
-      <template v-for="(item, idx) in WordList" :key="item.id">
+      <template v-for="(item, idx) in wordList" :key="item.id">
         <div class="d-inline-flex align-center">
-          <component
-            :is="item.isDropZone ? DropZone : WordText"
-            v-bind="item.isDropZone ? {} : { wordText: item.wordText }"
+          <DropZone
+            v-if="item.isDropZone"
+            v-model:items="item.items"
+            @update:items="onUpdateItems(idx, $event)"
+            @dropzone-overflow="onDropZoneOverflow"
           />
+          <WordText v-else :wordText="item.wordText" />
         </div>
-        <div v-if="idx < WordList.length - 1" class="d-inline-flex align-center">
+        <div v-if="idx < wordList.length - 1" class="d-inline-flex align-center">
           <WordDivider />
         </div>
       </template>
@@ -21,9 +24,22 @@ import DropZone from './DropZone.vue'
 import WordText from './WordText.vue'
 import WordDivider from './WordDivider.vue'
 
-const props = defineProps<{
-  wordList: Array<any>
-}>()
+import { defineEmits } from 'vue'
+const emit = defineEmits(['update-dropzone', 'dropzone-overflow'])
+const props = defineProps<{ wordList: Array<any> }>()
 
-const WordList = props.wordList
+// DropZone用のitems配列を各isDropZone要素に初期化
+props.wordList.forEach(item => {
+  if (item.isDropZone && !item.items) item.items = []
+})
+
+const wordList = props.wordList
+
+function onUpdateItems(idx: number, items: any[]) {
+  // ドロップゾーンのitemsが更新されたら親に伝播
+  emit('update-dropzone', { wordGroupId: props.wordList[idx]?.id, wordList: props.wordList })
+}
+function onDropZoneOverflow(removed: any) {
+  emit('dropzone-overflow', removed)
+}
 </script>

@@ -7,15 +7,15 @@
           <v-card-text class="text-center">ここで和文英訳演習を行います。</v-card-text>
         </v-card>
       </v-col>
-      <v-col cols="12" class="mx-auto">
-        <SentenceContainer />
+      <v-col cols="12">
+        <ExerciseTab />
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script setup lang="ts">
-import SentenceContainer from '../features/exercises/components/SentenceContainer.vue'
+import ExerciseTab from '@/features/exercises/components/ExerciseTab.vue';
 </script>
 
 <style scoped></style>
