@@ -3,7 +3,7 @@
     <div class="d-inline-flex align-center">
       <template v-for="(item, idx) in wordList" :key="item.id">
         <div class="d-inline-flex align-center">
-          <DropZone v-if="item.isDropZone" :items="item.items ?? []" :dropzone-id="item.id"/>
+          <DropZone v-if="item.isDropZone" :items="item.items ?? []" :dropzone-id="item.id" />
           <WordText v-else-if="item.wordText !== undefined" :wordText="item.wordText" />
         </div>
         <div v-if="idx < wordList.length - 1" class="d-inline-flex align-center">
