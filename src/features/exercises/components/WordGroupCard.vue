@@ -3,7 +3,7 @@
     <div class="d-inline-flex align-center">
       <template v-for="(item, idx) in wordList" :key="item.id">
         <div class="d-inline-flex align-center">
-          <DropZone v-if="item.isDropZone" :items="item.items ?? []" />
+          <DropZone v-if="item.isDropZone" :items="item.items ?? []" :dropzone-id="item.id" />
           <WordText v-else-if="item.wordText !== undefined" :wordText="item.wordText" />
         </div>
         <div v-if="idx < wordList.length - 1" class="d-inline-flex align-center">
@@ -18,7 +18,7 @@
 import DropZone from './DropZone.vue'
 import WordText from './WordText.vue'
 import WordDivider from './WordDivider.vue'
-import type { WordItem } from '@/features/exercises/types/exercise'
+import type { WordItem } from '@/types/exercise'
 
 const props = defineProps<{ wordList: WordItem[] }>()
 const wordList = props.wordList

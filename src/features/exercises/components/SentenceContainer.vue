@@ -13,6 +13,6 @@
 
 <script setup lang="ts">
 import WordGroupSection from './WordGroupSection.vue'
-import type { WordGroup } from '@/features/exercises/types/exercise'
+import type { WordGroup } from '@/types/exercise'
 const props = defineProps<{ wordGroupList: WordGroup[] }>()
 </script>

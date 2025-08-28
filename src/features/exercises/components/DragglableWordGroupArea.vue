@@ -19,11 +19,13 @@
 import { ref, watch } from 'vue'
 import draggable from 'vuedraggable'
 import WordGroupSection from './WordGroupSection.vue'
-import type { WordGroup } from '@/features/exercises/types/exercise'
+import type { WordGroup } from '@/types/exercise'
 
-const emit = defineEmits(['update-pool'])
+import { useExerciseStore } from '@/stores/exercise'
 const props = defineProps<{ localList: WordGroup[] }>()
 const localList = ref<WordGroup[]>(props.localList)
+const exerciseStore = useExerciseStore()
+
 watch(
   () => props.localList,
   (val) => {
@@ -32,6 +34,6 @@ watch(
 )
 
 function onUpdate(newList: WordGroup[]) {
-  emit('update-pool', newList)
+  exerciseStore.setDraggableWordGroupList(newList)
 }
 </script>
