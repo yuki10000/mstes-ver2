@@ -39,6 +39,23 @@ export const useExerciseStore = defineStore('exercise', {
     },
     setDraggableWordGroupList(list: WordGroup[]) {
       this.draggableWordGroupList = list
+      console.log(list.length)
+    },
+
+    // DropZoneなどからidと新items配列を受けて該当item.itemsを更新
+    updateItemsById(id: number, newItems: WordGroup[]) {
+      for (const group of this.sentenceWordGroupList) {
+        for (const section of ['upper', 'middle', 'lower'] as const) {
+          const wordList = group.contents[section].wordList
+          if (!wordList) continue
+          for (const item of wordList) {
+            if (item.id === id) {
+              item.items = [...newItems]
+              return
+            }
+          }
+        }
+      }
     }
   }
 })

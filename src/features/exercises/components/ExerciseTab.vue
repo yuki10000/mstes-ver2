@@ -24,6 +24,8 @@ import DragglableWordGroupArea from './DragglableWordGroupArea.vue'
 import { ref } from 'vue'
 import { useExerciseStore } from '@/stores/exercise'
 
+import { useAnswerString } from '../composables/answer'
+
 const exerciseStore = useExerciseStore()
 
 // storeから初期値を取得しrefで管理
@@ -32,6 +34,7 @@ const sentenceWordGroupList = ref(exerciseStore.sentenceWordGroupList)
 const draggableWordGroupList = ref(exerciseStore.draggableWordGroupList)
 
 function checkAnswer() {
+  const { answerString, isCorrect } = useAnswerString()
   alert(isCorrect.value ? '正解です！' : '不正解です' + ':' + answerString.value)
 }
 </script>

@@ -1,17 +1,16 @@
 // 回答判定用のcomposable
-import { computed, type Ref } from 'vue'
+import { computed } from 'vue'
 import { useExerciseStore } from '@/stores/exercise'
 import type { WordGroup, WordItem } from '@/types/exercise'
 
 /**
- * sentenceWordGroupListから完成した文字列を生成する
- * @param sentenceWordGroupList - 判定対象のWordGroup配列（Ref型）
+ * storeのsentenceWordGroupListから完成した文字列を生成するcomposable
  */
-export function useAnswerString(sentenceWordGroupList: Ref<WordGroup[]>) {
+export function useAnswerString() {
   const exerciseStore = useExerciseStore()
 
   const answerString = computed(() => {
-    const list = sentenceWordGroupList.value
+    const list = exerciseStore.sentenceWordGroupList
     if (!Array.isArray(list)) return ''
     return list.map((group: WordGroup) => {
       const wordList = group.contents.middle.wordList || []

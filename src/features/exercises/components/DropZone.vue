@@ -2,6 +2,7 @@
   <v-sheet class="d-flex align-center justify-center mx-1 dropzone-sheet" elevation="0" rounded>
     <draggable
       v-model="itemsModel"
+      @change="onDropOrChange"
       group="words"
       class="flex-grow-1 d-flex align-center justify-center dropzone-draggable"
       item-key="id"
@@ -31,6 +32,14 @@ import draggable from 'vuedraggable'
 import WordGroupSection from './WordGroupSection.vue'
 import type { WordGroup } from '@/types/exercise'
 
-const props = defineProps<{ items: WordGroup[] }>()
+const props = defineProps<{ items: WordGroup[]; dropzoneId: number }>()
+import { useExerciseStore } from '@/stores/exercise'
+const exerciseStore = useExerciseStore()
+
 const itemsModel = ref<WordGroup[]>(props.items)
+
+function onDropOrChange() {
+  // itemsModel.valueが新しい配列
+  exerciseStore.updateItemsById(props.dropzoneId, itemsModel.value)
+}
 </script>
