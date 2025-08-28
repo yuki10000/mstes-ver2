@@ -13,12 +13,7 @@
         <v-card elevation="2">
           <v-card-text>
             <ModelCheckTab v-if="view === 'model'" />
-            <ExerciseTab
-              v-else
-              :referenceSentenceWordGroupList="referenceSentenceWordGroupList"
-              :sentenceWordGroupList="sentenceWordGroupList"
-              :draggableWordGroupList="draggableWordGroupList"
-            />
+            <ExerciseTab v-else />
           </v-card-text>
         </v-card>
       </v-col>
@@ -27,10 +22,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
+import { useExerciseStore } from '@/stores/exercise'
 import ExerciseTab from '@/features/exercises/components/ExerciseTab.vue'
 import ModelCheckTab from '@/features/exercises/components/ModelCheckTab.vue'
-import { useExerciseStore } from '@/stores/exercise'
 
 const view = ref('model')
 const exerciseStore = useExerciseStore()
@@ -38,10 +33,6 @@ const exerciseStore = useExerciseStore()
 onMounted(() => {
   exerciseStore.fetchAll()
 })
-
-const sentenceWordGroupList = computed(() => exerciseStore.sentenceWordGroupList)
-const draggableWordGroupList = computed(() => exerciseStore.draggableWordGroupList)
-const referenceSentenceWordGroupList = computed(() => exerciseStore.referenceWordGroupList)
 </script>
 
 <style scoped></style>

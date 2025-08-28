@@ -32,6 +32,13 @@ export const useExerciseStore = defineStore('exercise', {
     async fetchAll() {
       await this.fetchExerciseJson()
       await this.fetchReferenceSentences()
+    },
+    setSentenceWordGroupList(list: WordGroup[]) {
+      this.sentenceWordGroupList = list
+      console.log("changed")
+    },
+    setDraggableWordGroupList(list: WordGroup[]) {
+      this.draggableWordGroupList = list
     }
   }
 })
