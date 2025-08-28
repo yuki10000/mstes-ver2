@@ -7,6 +7,7 @@ export const useExerciseStore = defineStore('exercise', {
     sentenceWordGroupList: [] as WordGroup[],
     draggableWordGroupList: [] as WordGroup[],
     referenceSentenceList: [] as Sentence[],
+    sentencesList: [] as Sentence[],
     referenceWordGroupList: [] as WordGroup[],
     answer: '' as string,
   }),
@@ -23,6 +24,7 @@ export const useExerciseStore = defineStore('exercise', {
       const res = await fetch('/json/1/1/reference-sentences.json')
       const data = await res.json()
       this.referenceSentenceList = data
+      this.sentencesList = data
       // referenceCentenceIdと一致するものを抽出
       const ref = data.find((item: Sentence) => item.sentenceId === this.referenceCentenceId)
       this.referenceWordGroupList = ref ? ref.sentenceWordGroupList : []

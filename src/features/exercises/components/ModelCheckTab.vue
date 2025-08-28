@@ -11,6 +11,10 @@
 </template>
 
 <script setup lang="ts">
-import sentenceList from '../composables/sentenceList'
+import { computed } from 'vue'
+import { useExerciseStore } from '@/stores/exercise'
 import SentenceContainer from './SentenceContainer.vue'
+
+const exerciseStore = useExerciseStore()
+const sentenceList = computed(() => exerciseStore.sentencesList)
 </script>
