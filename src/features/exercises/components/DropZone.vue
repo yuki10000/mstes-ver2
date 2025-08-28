@@ -5,7 +5,7 @@
       @change="onDropOrChange"
       group="words"
       class="flex-grow-1 d-flex align-center justify-center dropzone-draggable"
-      item-key="id"
+      item-key="wordGroupId"
     >
       <template #item="{ element }">
         <WordGroupSection :wordGroup="element" class="mx-2" />
