@@ -11,6 +11,6 @@
 </template>
 
 <script setup lang="ts">
-import sentenceList from './sentenceList'
+import sentenceList from '../composables/sentenceList'
 import SentenceContainer from './SentenceContainer.vue'
 </script>

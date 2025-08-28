@@ -3,12 +3,7 @@
     <div class="d-inline-flex align-center">
       <template v-for="(item, idx) in wordList" :key="item.id">
         <div class="d-inline-flex align-center">
-          <DropZone
-            v-if="item.isDropZone"
-            v-model:items="item.items"
-            @update:items="onUpdateItems(idx, $event)"
-            @dropzone-overflow="onDropZoneOverflow"
-          />
+          <DropZone v-if="item.isDropZone" v-model:items="item.items" />
           <WordText v-else :wordText="item.wordText" />
         </div>
         <div v-if="idx < wordList.length - 1" class="d-inline-flex align-center">
@@ -24,22 +19,12 @@ import DropZone from './DropZone.vue'
 import WordText from './WordText.vue'
 import WordDivider from './WordDivider.vue'
 
-import { defineEmits } from 'vue'
-const emit = defineEmits(['update-dropzone', 'dropzone-overflow'])
 const props = defineProps<{ wordList: Array<any> }>()
 
 // DropZone用のitems配列を各isDropZone要素に初期化
-props.wordList.forEach(item => {
+props.wordList.forEach((item) => {
   if (item.isDropZone && !item.items) item.items = []
 })
 
 const wordList = props.wordList
-
-function onUpdateItems(idx: number, items: any[]) {
-  // ドロップゾーンのitemsが更新されたら親に伝播
-  emit('update-dropzone', { wordGroupId: props.wordList[idx]?.id, wordList: props.wordList })
-}
-function onDropZoneOverflow(removed: any) {
-  emit('dropzone-overflow', removed)
-}
 </script>

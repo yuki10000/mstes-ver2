@@ -5,10 +5,10 @@
         <SentenceContainer :wordGroupList="referenceSentenceWordGroupList" />
       </v-col>
       <v-col cols="12">
-        <SentenceContainer :wordGroupList="sentenceWordGroupList" @dropzone-overflow="$emit('dropzone-overflow', $event)" @update-dropzone="$emit('update-dropzone', $event)" />
+        <SentenceContainer :wordGroupList="sentenceWordGroupList" />
       </v-col>
       <v-col cols="12">
-        <DragglableWordGroupArea :localList="draggableWordGroupList" @update-pool="$emit('update-pool', $event)" />
+        <DragglableWordGroupArea :localList="draggableWordGroupList" />
       </v-col>
     </v-row>
   </v-container>
@@ -19,8 +19,8 @@ import SentenceContainer from './SentenceContainer.vue'
 import DragglableWordGroupArea from './DragglableWordGroupArea.vue'
 
 const props = defineProps<{
-  referenceSentenceWordGroupList: any[],
-  sentenceWordGroupList: any[],
-  draggableWordGroupList: any[],
+  referenceSentenceWordGroupList: any[]
+  sentenceWordGroupList: any[]
+  draggableWordGroupList: any[]
 }>()
 </script>

@@ -12,8 +12,6 @@
       <component
         :is="middleContentType === 'label' ? Label : WordGroupCard"
         v-bind="middleContentType === 'label' ? middleLabelProps : { wordList: middleWordList }"
-        @update-dropzone="$emit('update-dropzone', $event)"
-        @dropzone-overflow="$emit('dropzone-overflow', $event)"
       />
     </div>
     <!-- 下部セクション（noneの場合は何も表示しない） -->

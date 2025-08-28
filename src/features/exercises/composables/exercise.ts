@@ -11,7 +11,23 @@ export const sentenceWordGroupList = [
       middle: {
         contentType: 'wordGroupCard',
         wordList: [
-          { id: 1, isDropZone: true, wordText: '猫' },
+          {
+            id: 1, isDropZone: true, items: [
+              {
+                wordGroupId: 6,
+                contents: {
+                  upper: { contentType: 'none' },
+                  middle: {
+                    contentType: 'wordGroupCard',
+                    wordList: [
+                      { id: 9, isDropZone: false, wordText: '太郎' }
+                    ],
+                  },
+                  lower: { contentType: 'none' },
+                }
+              },
+            ]
+          },
           { id: 2, isDropZone: false, wordText: 'は' },
         ],
       },
@@ -63,19 +79,6 @@ export const sentenceWordGroupList = [
 ]
 
 export const draggableWordGroupList = [
-  {
-    wordGroupId: 6,
-    contents: {
-      upper: { contentType: 'none' },
-      middle: {
-        contentType: 'wordGroupCard',
-        wordList: [
-          { id: 9, isDropZone: false, wordText: '太郎' }
-        ],
-      },
-      lower: { contentType: 'none' },
-    }
-  },
   {
     wordGroupId: 7,
     contents: {
