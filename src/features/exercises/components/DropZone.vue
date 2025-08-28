@@ -29,7 +29,8 @@
 import { ref } from 'vue'
 import draggable from 'vuedraggable'
 import WordGroupSection from './WordGroupSection.vue'
+import type { WordGroup } from '@/features/exercises/types/exercise'
 
-const props = defineProps<{ items: any[] }>()
-const itemsModel = ref(props.items)
+const props = defineProps<{ items: WordGroup[] }>()
+const itemsModel = ref<WordGroup[]>(props.items)
 </script>

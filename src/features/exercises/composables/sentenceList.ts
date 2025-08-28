@@ -6,14 +6,14 @@ const sentenceList = [
         {
           wordGroupId: 1,
           contents: {
-            upper: { contentType: 'none' },
+            upper: { contentType: 'none' as const },
             middle: {
-              contentType: 'wordGroupCard',
+              contentType: 'wordGroupCard' as const,
               wordList: [
                 { id: 1, isDropZone: false, wordText: '太郎はポチに肉を与えます' },
               ],
             },
-            lower: { contentType: 'none' },
+            lower: { contentType: 'none' as const },
           },
         }
       ]
@@ -25,57 +25,57 @@ const sentenceList = [
         {
           wordGroupId: 1,
           contents: {
-            upper: { contentType: 'none' },
+            upper: { contentType: 'none' as const },
             middle: {
-              contentType: 'wordGroupCard',
+              contentType: 'wordGroupCard' as const,
               wordList: [
                 { id: 1, isDropZone: false, wordText: '太郎' },
                 { id: 2, isDropZone: false, wordText: 'は' },
               ],
             },
-            lower: { contentType: 'none' },
+            lower: { contentType: 'none' as const },
           },
         },
         {
           wordGroupId: 2,
           contents: {
-            upper: { contentType: 'none' },
+            upper: { contentType: 'none' as const },
             middle: {
-              contentType: 'wordGroupCard',
+              contentType: 'wordGroupCard' as const,
               wordList: [
                 { id: 1, isDropZone: false, wordText: 'ポチ' },
                 { id: 2, isDropZone: false, wordText: 'に' },
               ],
             },
-            lower: { contentType: 'none' },
+            lower: { contentType: 'none' as const },
           },
         },
         {
           wordGroupId: 4,
           contents: {
-            upper: { contentType: 'none' },
+            upper: { contentType: 'none' as const },
             middle: {
-              contentType: 'wordGroupCard',
+              contentType: 'wordGroupCard' as const,
               wordList: [
                 { id: 1, isDropZone: false, wordText: '肉' },
                 { id: 2, isDropZone: false, wordText: 'を' },
               ],
             },
-            lower: { contentType: 'none' },
+            lower: { contentType: 'none' as const },
           },
         },
         {
           wordGroupId: 5,
           contents: {
-            upper: { contentType: 'none' },
+            upper: { contentType: 'none' as const },
             middle: {
-              contentType: 'wordGroupCard',
+              contentType: 'wordGroupCard' as const,
               wordList: [
                 { id: 1, isDropZone: false, wordText: '与え' },
                 { id: 2, isDropZone: false, wordText: 'ます' },
               ],
             },
-            lower: { contentType: 'none' },
+            lower: { contentType: 'none' as const },
           },
         },
       ]
@@ -87,57 +87,57 @@ const sentenceList = [
         {
           wordGroupId: 1,
           contents: {
-            upper: { contentType: 'none' },
+            upper: { contentType: 'none' as const },
             middle: {
-              contentType: 'wordGroupCard',
+              contentType: 'wordGroupCard' as const,
               wordList: [
                 { id: 1, isDropZone: false, wordText: 'Taro' },
                 { id: 2, isDropZone: false, wordText: 'は' },
               ],
             },
-            lower: { contentType: 'none' },
+            lower: { contentType: 'none' as const },
           },
         },
         {
           wordGroupId: 2,
           contents: {
-            upper: { contentType: 'none' },
+            upper: { contentType: 'none' as const },
             middle: {
-              contentType: 'wordGroupCard',
+              contentType: 'wordGroupCard' as const,
               wordList: [
                 { id: 1, isDropZone: false, wordText: 'Pochi' },
                 { id: 2, isDropZone: false, wordText: 'に' },
               ],
             },
-            lower: { contentType: 'none' },
+            lower: { contentType: 'none' as const },
           },
         },
         {
           wordGroupId: 3,
           contents: {
-            upper: { contentType: 'none' },
+            upper: { contentType: 'none' as const },
             middle: {
-              contentType: 'wordGroupCard',
+              contentType: 'wordGroupCard' as const,
               wordList: [
                 { id: 1, isDropZone: false, wordText: 'meat' },
                 { id: 2, isDropZone: false, wordText: 'を' },
               ],
             },
-            lower: { contentType: 'none' },
+            lower: { contentType: 'none' as const },
           },
         },
         {
           wordGroupId: 4,
           contents: {
-            upper: { contentType: 'none' },
+            upper: { contentType: 'none' as const },
             middle: {
-              contentType: 'wordGroupCard',
+              contentType: 'wordGroupCard' as const,
               wordList: [
                 { id: 1, isDropZone: false, wordText: 'gives' },
                 { id: 2, isDropZone: false, wordText: 'ます' },
               ],
             },
-            lower: { contentType: 'none' },
+            lower: { contentType: 'none' as const },
           },
         },
       ]
@@ -150,17 +150,17 @@ const sentenceList = [
           wordGroupId: 1,
           contents: {
             upper: {
-              contentType: 'none'
+              contentType: 'none' as const
             },
             middle: {
-              contentType: 'wordGroupCard',
+              contentType: 'wordGroupCard' as const,
               wordList: [
                 { id: 1, isDropZone: false, wordText: 'Taro' },
                 { id: 2, isDropZone: false, wordText: 'は' },
               ],
             },
             lower: {
-              contentType: 'label',
+              contentType: 'label' as const,
               labelSettings: {
                 labelText: 'S: 何/誰が・は',
                 isLineUpper: true,
@@ -172,16 +172,16 @@ const sentenceList = [
         {
           wordGroupId: 2,
           contents: {
-            upper: { contentType: 'none' },
+            upper: { contentType: 'none' as const },
             middle: {
-              contentType: 'wordGroupCard',
+              contentType: 'wordGroupCard' as const,
               wordList: [
                 { id: 1, isDropZone: false, wordText: 'Pochi' },
                 { id: 2, isDropZone: false, wordText: 'に' },
               ],
             },
             lower: {
-              contentType: 'label',
+              contentType: 'label' as const,
               labelSettings: {
                 labelText: 'IO: 何/誰に',
                 isLineUpper: true,
@@ -193,16 +193,16 @@ const sentenceList = [
         {
           wordGroupId: 3,
           contents: {
-            upper: { contentType: 'none' },
+            upper: { contentType: 'none' as const },
             middle: {
-              contentType: 'wordGroupCard',
+              contentType: 'wordGroupCard' as const,
               wordList: [
                 { id: 1, isDropZone: false, wordText: 'meat' },
                 { id: 2, isDropZone: false, wordText: 'を' },
               ],
             },
             lower: {
-              contentType: 'label',
+              contentType: 'label' as const,
               labelSettings: {
                 labelText: 'DO: 何/誰を',
                 isLineUpper: true,
@@ -214,16 +214,16 @@ const sentenceList = [
         {
           wordGroupId: 4,
           contents: {
-            upper: { contentType: 'none' },
+            upper: { contentType: 'none' as const },
             middle: {
-              contentType: 'wordGroupCard',
+              contentType: 'wordGroupCard' as const,
               wordList: [
                 { id: 1, isDropZone: false, wordText: 'gives' },
                 { id: 2, isDropZone: false, wordText: 'ます' },
               ],
             },
             lower: {
-              contentType: 'label',
+              contentType: 'label' as const,
               labelSettings: {
                 labelText: 'V: どうする',
                 isLineUpper: true,
@@ -242,7 +242,7 @@ const sentenceList = [
           wordGroupId: 1,
           contents: {
             upper: {
-              contentType: 'label',
+              contentType: 'label' as const,
               labelSettings: {
                 labelText: 'S: 何/誰が・は',
                 isLineUpper: false,
@@ -250,14 +250,14 @@ const sentenceList = [
               },
             },
             middle: {
-              contentType: 'wordGroupCard',
+              contentType: 'wordGroupCard' as const,
               wordList: [
                 { id: 1, isDropZone: false, wordText: 'Taro' },
                 { id: 2, isDropZone: false, wordText: 'は' },
               ],
             },
             lower: {
-              contentType: 'none'
+              contentType: 'none' as const
             },
           },
         },
@@ -265,7 +265,7 @@ const sentenceList = [
           wordGroupId: 2,
           contents: {
             upper: {
-              contentType: 'label',
+              contentType: 'label' as const,
               labelSettings: {
                 labelText: 'V: どうする',
                 isLineUpper: false,
@@ -273,14 +273,14 @@ const sentenceList = [
               },
             },
             middle: {
-              contentType: 'wordGroupCard',
+              contentType: 'wordGroupCard' as const,
               wordList: [
                 { id: 1, isDropZone: false, wordText: 'gives' },
                 { id: 2, isDropZone: false, wordText: 'ます' },
               ],
             },
             lower: {
-              contentType: 'none'
+              contentType: 'none' as const
             },
           },
         },
@@ -288,7 +288,7 @@ const sentenceList = [
           wordGroupId: 3,
           contents: {
             upper: {
-              contentType: 'label',
+              contentType: 'label' as const,
               labelSettings: {
                 labelText: 'IO: 何/誰に',
                 isLineUpper: false,
@@ -296,14 +296,14 @@ const sentenceList = [
               },
             },
             middle: {
-              contentType: 'wordGroupCard',
+              contentType: 'wordGroupCard' as const,
               wordList: [
                 { id: 1, isDropZone: false, wordText: 'Pochi' },
                 { id: 2, isDropZone: false, wordText: 'に' },
               ],
             },
             lower: {
-              contentType: 'none'
+              contentType: 'none' as const
             },
           },
         },
@@ -311,7 +311,7 @@ const sentenceList = [
           wordGroupId: 4,
           contents: {
             upper: {
-              contentType: 'label',
+              contentType: 'label' as const,
               labelSettings: {
                 labelText: 'DO: 何/誰を',
                 isLineUpper: false,
@@ -319,14 +319,14 @@ const sentenceList = [
               },
             },
             middle: {
-              contentType: 'wordGroupCard',
+              contentType: 'wordGroupCard' as const,
               wordList: [
                 { id: 1, isDropZone: false, wordText: 'meat' },
                 { id: 2, isDropZone: false, wordText: 'を' },
               ],
             },
             lower: {
-              contentType: 'none'
+              contentType: 'none' as const
             },
           },
         },
@@ -340,17 +340,17 @@ const sentenceList = [
           wordGroupId: 1,
           contents: {
             upper: {
-              contentType: 'none'
+              contentType: 'none' as const
             },
             middle: {
-              contentType: 'wordGroupCard',
+              contentType: 'wordGroupCard' as const,
               wordList: [
                 { id: 1, isDropZone: false, wordText: 'Taro' },
                 { id: 2, isDropZone: false, wordText: 'は' },
               ],
             },
             lower: {
-              contentType: 'none'
+              contentType: 'none' as const
             },
           },
         },
@@ -358,17 +358,17 @@ const sentenceList = [
           wordGroupId: 2,
           contents: {
             upper: {
-                contentType: 'none'
+              contentType: 'none' as const
             },
             middle: {
-              contentType: 'wordGroupCard',
+              contentType: 'wordGroupCard' as const,
               wordList: [
                 { id: 1, isDropZone: false, wordText: 'gives' },
                 { id: 2, isDropZone: false, wordText: 'ます' },
               ],
             },
             lower: {
-              contentType: 'none'
+              contentType: 'none' as const
             },
           },
         },
@@ -376,17 +376,17 @@ const sentenceList = [
           wordGroupId: 3,
           contents: {
             upper: {
-              contentType: 'none'
+              contentType: 'none' as const
             },
             middle: {
-              contentType: 'wordGroupCard',
+              contentType: 'wordGroupCard' as const,
               wordList: [
                 { id: 1, isDropZone: false, wordText: 'Pochi' },
                 { id: 2, isDropZone: false, wordText: 'に' },
               ],
             },
             lower: {
-              contentType: 'none'
+              contentType: 'none' as const
             },
           },
         },
@@ -394,17 +394,17 @@ const sentenceList = [
           wordGroupId: 4,
           contents: {
             upper: {
-              contentType: 'none'
+              contentType: 'none' as const
             },
             middle: {
-              contentType: 'wordGroupCard',
+              contentType: 'wordGroupCard' as const,
               wordList: [
                 { id: 1, isDropZone: false, wordText: 'meat' },
                 { id: 2, isDropZone: false, wordText: 'を' },
               ],
             },
             lower: {
-              contentType: 'none'
+              contentType: 'none' as const
             },
           },
         },

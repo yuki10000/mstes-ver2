@@ -37,8 +37,16 @@ import {
 } from '@/features/exercises/composables/exercise'
 
 const view = ref('model')
-const sentenceWordGroupList = ref(JSON.parse(JSON.stringify(initialSentenceWordGroupList)))
-const draggableWordGroupList = ref(JSON.parse(JSON.stringify(initialDraggableWordGroupList)))
+const sentenceWordGroupList = ref(
+  Array.isArray(initialSentenceWordGroupList)
+    ? JSON.parse(JSON.stringify(initialSentenceWordGroupList))
+    : [],
+)
+const draggableWordGroupList = ref(
+  Array.isArray(initialDraggableWordGroupList)
+    ? JSON.parse(JSON.stringify(initialDraggableWordGroupList))
+    : [],
+)
 </script>
 
 <style scoped></style>

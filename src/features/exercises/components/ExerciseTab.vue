@@ -18,9 +18,10 @@
 import SentenceContainer from './SentenceContainer.vue'
 import DragglableWordGroupArea from './DragglableWordGroupArea.vue'
 
-const props = defineProps<{
-  referenceSentenceWordGroupList: any[]
-  sentenceWordGroupList: any[]
-  draggableWordGroupList: any[]
+import type { WordGroup } from '@/features/exercises/types/exercise'
+defineProps<{
+  referenceSentenceWordGroupList: WordGroup[]
+  sentenceWordGroupList: WordGroup[]
+  draggableWordGroupList: WordGroup[]
 }>()
 </script>
