@@ -7,9 +7,14 @@
         v-bind="upperContentType === 'label' ? upperLabelProps : { wordList: upperWordList }"
       />
     </div>
-    <!-- 真ん中のWordGroupCard（必ず表示） -->
-    <div class="mb-1 w-100 d-flex justify-center">
-      <WordGroupCard :wordList="mainWordList" />
+    <!-- 真ん中のセクション（middleContentTypeで切り替え、noneなら非表示） -->
+    <div v-if="middleContentType !== 'none'" class="mb-1 w-100 d-flex justify-center">
+      <component
+        :is="middleContentType === 'label' ? Label : WordGroupCard"
+        v-bind="middleContentType === 'label' ? middleLabelProps : { wordList: middleWordList }"
+        @update-dropzone="$emit('update-dropzone', $event)"
+        @dropzone-overflow="$emit('dropzone-overflow', $event)"
+      />
     </div>
     <!-- 下部セクション（noneの場合は何も表示しない） -->
     <div v-if="lowerContentType !== 'none'" class="w-100 d-flex justify-center">
@@ -32,15 +37,17 @@ const props = defineProps<{
 }>()
 
 // 上部
-const upperContentType = computed(() => props.wordGroup.subContents?.upper?.contentType)
-const upperLabelProps = computed(() => props.wordGroup.subContents?.upper?.labelSettings || {})
-const upperWordList = computed(() => props.wordGroup.subContents?.upper?.wordList || [])
+const upperContentType = computed(() => props.wordGroup.contents?.upper?.contentType)
+const upperLabelProps = computed(() => props.wordGroup.contents?.upper?.labelSettings || {})
+const upperWordList = computed(() => props.wordGroup.contents?.upper?.wordList || [])
 
 // 下部
-const lowerContentType = computed(() => props.wordGroup.subContents?.lower?.contentType)
-const lowerLabelProps = computed(() => props.wordGroup.subContents?.lower?.labelSettings || {})
-const lowerWordList = computed(() => props.wordGroup.subContents?.lower?.wordList || [])
+const lowerContentType = computed(() => props.wordGroup.contents?.lower?.contentType)
+const lowerLabelProps = computed(() => props.wordGroup.contents?.lower?.labelSettings || {})
+const lowerWordList = computed(() => props.wordGroup.contents?.lower?.wordList || [])
 
 // 真ん中
-const mainWordList = computed(() => props.wordGroup.wordList || [])
+const middleContentType = computed(() => props.wordGroup.contents?.middle?.contentType)
+const middleLabelProps = computed(() => props.wordGroup.contents?.middle?.labelSettings || {})
+const middleWordList = computed(() => props.wordGroup.contents?.middle?.wordList || [])
 </script>
