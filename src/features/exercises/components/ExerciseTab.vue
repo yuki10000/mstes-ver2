@@ -18,7 +18,7 @@
 import SentenceContainer from './SentenceContainer.vue'
 import DragglableWordGroupArea from './DragglableWordGroupArea.vue'
 
-import type { WordGroup } from '@/features/exercises/types/exercise'
+import type { WordGroup } from '@/types/exercise'
 defineProps<{
   referenceSentenceWordGroupList: WordGroup[]
   sentenceWordGroupList: WordGroup[]

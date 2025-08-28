@@ -18,7 +18,7 @@
 import DropZone from './DropZone.vue'
 import WordText from './WordText.vue'
 import WordDivider from './WordDivider.vue'
-import type { WordItem } from '@/features/exercises/types/exercise'
+import type { WordItem } from '@/types/exercise'
 
 const props = defineProps<{ wordList: WordItem[] }>()
 const wordList = props.wordList

@@ -27,26 +27,21 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import ExerciseTab from '@/features/exercises/components/ExerciseTab.vue'
 import ModelCheckTab from '@/features/exercises/components/ModelCheckTab.vue'
-import {
-  referenceSentenceWordGroupList,
-  sentenceWordGroupList as initialSentenceWordGroupList,
-  draggableWordGroupList as initialDraggableWordGroupList,
-} from '@/features/exercises/composables/exercise'
+import { useExerciseStore } from '@/stores/exercise'
 
 const view = ref('model')
-const sentenceWordGroupList = ref(
-  Array.isArray(initialSentenceWordGroupList)
-    ? JSON.parse(JSON.stringify(initialSentenceWordGroupList))
-    : [],
-)
-const draggableWordGroupList = ref(
-  Array.isArray(initialDraggableWordGroupList)
-    ? JSON.parse(JSON.stringify(initialDraggableWordGroupList))
-    : [],
-)
+const exerciseStore = useExerciseStore()
+
+onMounted(() => {
+  exerciseStore.fetchAll()
+})
+
+const sentenceWordGroupList = computed(() => exerciseStore.sentenceWordGroupList)
+const draggableWordGroupList = computed(() => exerciseStore.draggableWordGroupList)
+const referenceSentenceWordGroupList = computed(() => exerciseStore.referenceWordGroupList)
 </script>
 
 <style scoped></style>

@@ -23,7 +23,7 @@ import { computed } from 'vue'
 import Label from './WordGroupLabelLabel.vue'
 import WordGroupCard from './WordGroupCard.vue'
 
-import type { WordGroup, WordItem, LabelSettings } from '@/features/exercises/types/exercise'
+import type { WordGroup, WordItem, LabelSettings } from '@/types/exercise'
 const props = defineProps<{ wordGroup: WordGroup }>()
 
 // 上部
