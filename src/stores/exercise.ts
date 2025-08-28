@@ -8,6 +8,7 @@ export const useExerciseStore = defineStore('exercise', {
     draggableWordGroupList: [] as WordGroup[],
     referenceSentenceList: [] as Sentence[],
     referenceWordGroupList: [] as WordGroup[],
+    answer: '' as string,
   }),
   actions: {
     async fetchExerciseJson() {
@@ -16,6 +17,7 @@ export const useExerciseStore = defineStore('exercise', {
       this.referenceCentenceId = data.referenceCentenceId
       this.sentenceWordGroupList = data.sentenceWordGroupList
       this.draggableWordGroupList = data.draggableWordGroupList
+      this.answer = data.answer ?? ''
     },
     async fetchReferenceSentences() {
       const res = await fetch('/json/1/1/reference-sentences.json')
