@@ -1,21 +1,52 @@
 <template>
   <v-container class="fill-height" fluid>
     <v-row align="center" justify="center">
-      <v-col cols="12" md="6" lg="6" class="mx-auto">
-        <v-card elevation="2">
-          <v-card-title class="text-h4 text-center">演習ページ</v-card-title>
-          <v-card-text class="text-center">ここで和文英訳演習を行います。</v-card-text>
-        </v-card>
-      </v-col>
       <v-col cols="12">
-        <ExerciseTab />
+        <div class="d-flex flex-row align-center mb-4" style="gap: 16px">
+          <v-btn :color="view === 'model' ? 'primary' : 'grey'" @click="view = 'model'"
+            >モデル</v-btn
+          >
+          <v-btn :color="view === 'exercise' ? 'primary' : 'grey'" @click="view = 'exercise'"
+            >演習</v-btn
+          >
+        </div>
+        <v-card elevation="2">
+          <v-card-text>
+            <ModelCheckTab v-if="view === 'model'" />
+            <ExerciseTab
+              v-else
+              :referenceSentenceWordGroupList="referenceSentenceWordGroupList"
+              :sentenceWordGroupList="sentenceWordGroupList"
+              :draggableWordGroupList="draggableWordGroupList"
+            />
+          </v-card-text>
+        </v-card>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script setup lang="ts">
-import ExerciseTab from '@/features/exercises/components/ExerciseTab.vue';
+import { ref } from 'vue'
+import ExerciseTab from '@/features/exercises/components/ExerciseTab.vue'
+import ModelCheckTab from '@/features/exercises/components/ModelCheckTab.vue'
+import {
+  referenceSentenceWordGroupList,
+  sentenceWordGroupList as initialSentenceWordGroupList,
+  draggableWordGroupList as initialDraggableWordGroupList,
+} from '@/features/exercises/composables/exercise'
+
+const view = ref('model')
+const sentenceWordGroupList = ref(
+  Array.isArray(initialSentenceWordGroupList)
+    ? JSON.parse(JSON.stringify(initialSentenceWordGroupList))
+    : [],
+)
+const draggableWordGroupList = ref(
+  Array.isArray(initialDraggableWordGroupList)
+    ? JSON.parse(JSON.stringify(initialDraggableWordGroupList))
+    : [],
+)
 </script>
 
 <style scoped></style>

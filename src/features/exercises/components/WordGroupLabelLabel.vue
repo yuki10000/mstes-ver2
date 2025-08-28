@@ -7,10 +7,9 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
+defineProps<{
   labelText: string
   isLineUpper?: boolean
   isLineLower?: boolean
 }>()
 </script>
-Ï

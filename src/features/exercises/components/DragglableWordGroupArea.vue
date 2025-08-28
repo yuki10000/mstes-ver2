@@ -5,7 +5,7 @@
       group="words"
       item-key="wordGroupId"
       class="d-flex flex-row flex-nowrap justify-center align-center w-100 h-100"
-      style="min-height: 100px; min-width: 100%;"
+      style="min-height: 100px; min-width: 100%"
       @update:modelValue="onUpdate"
     >
       <template #item="{ element }">
@@ -19,13 +19,19 @@
 import { ref, watch } from 'vue'
 import draggable from 'vuedraggable'
 import WordGroupSection from './WordGroupSection.vue'
+import type { WordGroup } from '@/features/exercises/types/exercise'
 
 const emit = defineEmits(['update-pool'])
-const props = defineProps<{ localList: any[] }>()
-const localList = ref(props.localList)
-watch(() => props.localList, (val) => { localList.value = val })
+const props = defineProps<{ localList: WordGroup[] }>()
+const localList = ref<WordGroup[]>(props.localList)
+watch(
+  () => props.localList,
+  (val) => {
+    localList.value = val
+  },
+)
 
-function onUpdate(newList: any[]) {
+function onUpdate(newList: WordGroup[]) {
   emit('update-pool', newList)
 }
 </script>

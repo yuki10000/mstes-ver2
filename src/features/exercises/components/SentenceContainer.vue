@@ -6,8 +6,6 @@
         :key="group.wordGroupId"
         :wordGroup="group"
         class="mx-2"
-        @update-dropzone="onUpdateDropZone"
-        @dropzone-overflow="onDropZoneOverflow"
       />
     </div>
   </v-card>
@@ -15,13 +13,6 @@
 
 <script setup lang="ts">
 import WordGroupSection from './WordGroupSection.vue'
-const emit = defineEmits(['update-dropzone', 'dropzone-overflow'])
-const props = defineProps<{ wordGroupList: any[] }>()
-
-function onUpdateDropZone(payload: any) {
-  emit('update-dropzone', payload)
-}
-function onDropZoneOverflow(payload: any) {
-  emit('dropzone-overflow', payload)
-}
+import type { WordGroup } from '@/features/exercises/types/exercise'
+const props = defineProps<{ wordGroupList: WordGroup[] }>()
 </script>
