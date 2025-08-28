@@ -1,45 +1,118 @@
 import sentenceList from './sentenceList'
 
-// 1. referenceSentenceWordGroupList: sentenceId=1 の要素をそのまま格納
+// referenceSentenceWordGroupList: sentenceId=1 の要素をそのまま格納
 export const referenceSentenceWordGroupList = sentenceList.find(s => s.sentenceId === 1)?.sentenceWordGroupList || []
 
-// 2. sentenceWordGroupList: sentenceId=2 の各wordGroupでwordListのid=1をdropzone化
-export const sentenceWordGroupList = (sentenceList.find(s => s.sentenceId === 2)?.sentenceWordGroupList || []).map(group => {
-  // wordListのid=1をdropzoneに
-  const newGroup = JSON.parse(JSON.stringify(group))
-  if (newGroup.contents && newGroup.contents.middle && Array.isArray(newGroup.contents.middle.wordList)) {
-    newGroup.contents.middle.wordList = newGroup.contents.middle.wordList.map(item => {
-      if (item.id === 1) {
-        return {
-          ...item,
-          isDropZone: true,
-          items: [],
-        }
-      }
-      return item
-    })
-  }
-  return newGroup
-})
-
-// 3. draggableWordGroupList: sentenceId=2 の各wordGroupでwordListのid=1をカード化
-export const draggableWordGroupList = (sentenceList.find(s => s.sentenceId === 2)?.sentenceWordGroupList || []).map(group => {
-  // wordListのid=1のみをカードとして抽出
-  const item = group.contents?.middle?.wordList?.find((w: any) => w.id === 1)
-  if (item) {
-    return {
-      wordGroupId: group.wordGroupId,
-      contents: {
-        upper: { contentType: 'none' },
-        middle: {
-          contentType: 'wordGroupCard',
-          wordList: [
-            { ...item, isDropZone: false },
-          ],
-        },
-        lower: { contentType: 'none' },
+export const sentenceWordGroupList = [
+  {
+    wordGroupId: 1,
+    contents: {
+      upper: { contentType: 'none' },
+      middle: {
+        contentType: 'wordGroupCard',
+        wordList: [
+          { id: 1, isDropZone: true, wordText: '猫' },
+          { id: 2, isDropZone: false, wordText: 'は' },
+        ],
       },
+      lower: { contentType: 'none' },
+    },
+  },
+  {
+    wordGroupId: 2,
+    contents: {
+      upper: { contentType: 'none' },
+      middle: {
+        contentType: 'wordGroupCard',
+        wordList: [
+          { id: 3, isDropZone: true },
+          { id: 4, isDropZone: false, wordText: 'に' },
+        ],
+      },
+      lower: { contentType: 'none' },
+    },
+  },
+  {
+    wordGroupId: 4,
+    contents: {
+      upper: { contentType: 'none' },
+      middle: {
+        contentType: 'wordGroupCard',
+        wordList: [
+          { id: 5, isDropZone: true },
+          { id: 6, isDropZone: false, wordText: 'を' },
+        ],
+      },
+      lower: { contentType: 'none' },
+    },
+  },
+  {
+    wordGroupId: 5,
+    contents: {
+      upper: { contentType: 'none' },
+      middle: {
+        contentType: 'wordGroupCard',
+        wordList: [
+          { id: 7, isDropZone: true },
+          { id: 8, isDropZone: false, wordText: 'ます' },
+        ],
+      },
+      lower: { contentType: 'none' },
+    },
+  },
+]
+
+export const draggableWordGroupList = [
+  {
+    wordGroupId: 6,
+    contents: {
+      upper: { contentType: 'none' },
+      middle: {
+        contentType: 'wordGroupCard',
+        wordList: [
+          { id: 9, isDropZone: false, wordText: '太郎' }
+        ],
+      },
+      lower: { contentType: 'none' },
     }
-  }
-  return null
-}).filter(Boolean)
+  },
+  {
+    wordGroupId: 7,
+    contents: {
+      upper: { contentType: 'none' },
+      middle: {
+        contentType: 'wordGroupCard',
+        wordList: [
+          { id: 10, isDropZone: false, wordText: 'ポチ' }
+        ],
+      },
+      lower: { contentType: 'none' },
+    }
+  },
+  {
+    wordGroupId: 8,
+    contents: {
+      upper: { contentType: 'none' },
+      middle: {
+        contentType: 'wordGroupCard',
+        wordList: [
+          { id: 11, isDropZone: false, wordText: '肉' }
+        ],
+      },
+      lower: { contentType: 'none' },
+    }
+  },
+  {
+    wordGroupId: 9,
+    contents: {
+      upper: { contentType: 'none' },
+      middle: {
+        contentType: 'wordGroupCard',
+        wordList: [
+          { id: 12, isDropZone: false, wordText: '与え' }
+        ],
+      },
+      lower: { contentType: 'none' },
+    }
+  },
+]
