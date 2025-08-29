@@ -2,11 +2,11 @@
   <v-container class="fill-height" fluid>
     <v-row align="center" justify="center">
       <v-col cols="12">
-        <v-tabs v-model="view" fixed-tabs class="mb-4">
-          <v-tab value="model">モデル</v-tab>
-          <v-tab value="exercise">演習</v-tab>
+        <v-tabs v-model="view" fixed-tabs class="mb-4 custom-tabs">
+          <v-tab value="model">現在までの変換過程</v-tab>
+          <v-tab value="exercise">文の作成</v-tab>
         </v-tabs>
-        <v-card elevation="2">
+        <v-card elevation="0">
           <v-card-text>
             <v-window v-model="view">
               <v-window-item value="model">
@@ -116,4 +116,10 @@ const proceedAnyway = () => {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.custom-tabs .v-tab--selected {
+  background: #e3f2fd !important; /* 淡いブルー系 */
+  border-radius: 8px 8px 0 0;
+  transition: background 0.2s;
+}
+</style>
