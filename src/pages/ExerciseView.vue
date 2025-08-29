@@ -4,6 +4,7 @@
       <v-col cols="12">
         <v-tabs v-model="view" fixed-tabs class="mb-4 custom-tabs">
           <v-tab value="model">現在までの変換過程</v-tab>
+          <v-tab value="graph">グラフ表示</v-tab>
           <v-tab value="exercise">文の作成</v-tab>
         </v-tabs>
         <v-card elevation="0">
@@ -23,6 +24,9 @@
                     </v-alert>
                   </div>
                 </template>
+              </v-window-item>
+              <v-window-item value="graph">
+                <SentenceTransitionFlow />
               </v-window-item>
             </v-window>
           </v-card-text>
@@ -57,6 +61,7 @@ import { ref, onMounted, computed, watch } from 'vue'
 import { useExerciseStore } from '@/stores/exercise'
 import ExerciseTab from '@/features/exercises/components/ExerciseTab.vue'
 import ModelCheckTab from '@/features/exercises/components/ModelCheckTab.vue'
+import SentenceTransitionFlow from '@/features/exercises/components/SentenceTransitionFlow.vue'
 import { useRoute } from 'vue-router'
 
 const view = ref('model')
