@@ -75,7 +75,7 @@ const demoOptions = [
 
 const openDemo = () => {
   if (selectedDemo.value) {
-    window.open(`/exercise/${selectedDemo.value}`, '_blank')
+    window.open(`/demo/${selectedDemo.value}`, '_blank')
     dialog.value = false
   }
 }

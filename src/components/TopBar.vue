@@ -12,8 +12,7 @@
       <LogoutButton />
     </div>
     <div v-else>
-      <!-- ログイン前や認証復元中の表示（例: ローディングアイコンなど） -->
-      <v-progress-circular indeterminate color="white" size="24" />
+      <v-btn color="primary" @click="goLogin">ログイン</v-btn>
     </div>
   </v-app-bar>
 </template>
@@ -23,8 +22,14 @@ import { storeToRefs } from 'pinia'
 import { useAuthStore } from '@/stores/auth'
 import LogoutButton from '@/features/auth/components/LogoutButton.vue'
 
+import { useRouter } from 'vue-router'
 const authStore = useAuthStore()
 const { user } = storeToRefs(authStore)
+const router = useRouter()
+
+function goLogin() {
+  router.push({ name: 'Login' })
+}
 </script>
 
 <style scoped>

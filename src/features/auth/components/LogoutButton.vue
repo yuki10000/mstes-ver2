@@ -27,6 +27,6 @@ const router = useRouter()
 const confirmLogout = async () => {
   dialog.value = false
   await authStore.logout()
-  router.push({ name: 'Login' })
+  router.push({ name: 'Home' })
 }
 </script>

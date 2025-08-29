@@ -25,6 +25,12 @@ const router = createRouter({
       meta: { title: '演習' },
     },
     {
+      path: '/demo/:roomId',
+      name: 'Demo',
+      component: () => import('../pages/ExerciseView.vue'),
+      meta: { title: 'デモ' },
+    },
+    {
       path: '/:pathMatch(.*)*',
       name: 'NotFound',
       component: () => import('../pages/NotFound.vue'),
@@ -59,12 +65,11 @@ router.beforeEach(async (to, from, next) => {
     document.title = baseTitle
   }
 
-  // ログイン不要なページ
-  const publicPages = ['/login']
-  const requiresAuth = !publicPages.includes(to.path)
+  // /exercise/:roomId のみ認証必須
+  const isExercisePage = to.name === 'Exercise'
   const user = await waitForAuth()
 
-  if (requiresAuth && !user) {
+  if (isExercisePage && !user) {
     return next({ name: 'Login' })
   }
   next()
