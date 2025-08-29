@@ -14,6 +14,12 @@ dist-ssr
 coverage
 *.local
 
+# Firebase local files
+.firebase/
+firebase-debug.log*
+firestore-debug.log*
+.firebaserc.backup*
+
 /cypress/videos/
 /cypress/screenshots/
 
@@ -28,3 +34,5 @@ coverage
 *.sw?
 
 *.tsbuildinfo
+
+.env
