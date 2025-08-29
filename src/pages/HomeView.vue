@@ -5,12 +5,8 @@
         <v-card style="width: 400px; height: 500px; margin: 48px 0" elevation="4">
           <v-card-title class="text-h5">デモ</v-card-title>
           <v-card-subtitle>2問程度の簡単な問題を体験できます。</v-card-subtitle>
-          <v-container class="my-2" fluid style="height: 320px;">
-            <v-row
-              align="center"
-              justify="center"
-              style="height: 100%;"
-            >
+          <v-container class="my-2" fluid style="height: 320px">
+            <v-row align="center" justify="center" style="height: 100%">
               <v-col cols="12" class="d-flex flex-column align-center justify-center">
                 <v-icon size="100" color="primary" class="mb-6">mdi-play-circle</v-icon>
                 <v-btn color="primary" @click="dialog = true">デモを始める</v-btn>
@@ -44,12 +40,8 @@
         <v-card style="width: 400px; height: 500px; margin: 48px 0" elevation="4">
           <v-card-title class="text-h5">演習（準備中）</v-card-title>
           <v-card-subtitle>準備中のため、もうしばらくお待ちください。</v-card-subtitle>
-          <v-container class="my-2" fluid style="height: 320px;">
-            <v-row
-              align="center"
-              justify="center"
-              style="height: 100%;"
-            >
+          <v-container class="my-2" fluid style="height: 320px">
+            <v-row align="center" justify="center" style="height: 100%">
               <v-col cols="12" class="d-flex flex-column align-center justify-center">
                 <v-icon size="100" color="secondary" class="mb-6">mdi-school</v-icon>
                 <v-btn color="secondary" disabled>演習を始める</v-btn>

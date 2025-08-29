@@ -12,13 +12,9 @@
             <v-icon size="36" color="grey">mdi-chevron-double-down</v-icon>
           </v-row>
         </div>
-        <v-row
-            v-if="!(isCurrentReview)"
-            justify="center"
-            class="mt-2"
-          >
-            <v-card class="pa-3" elevation="0">作成する文</v-card>
-          </v-row>
+        <v-row v-if="!isCurrentReview" justify="center" class="mt-2">
+          <v-card class="pa-3" elevation="0">作成する文</v-card>
+        </v-row>
       </v-col>
     </v-row>
   </v-container>

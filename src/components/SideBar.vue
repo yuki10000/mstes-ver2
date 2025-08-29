@@ -3,7 +3,11 @@
     <v-list>
       <v-list-item to="/" title="ホーム" prepend-icon="mdi-home" />
       <v-list-item to="/users" title="(準備中) ユーザー" prepend-icon="mdi-account-group" />
-      <v-list-item to="/questions" title="(準備中) 問題管理" prepend-icon="mdi-file-document-multiple" />
+      <v-list-item
+        to="/questions"
+        title="(準備中) 問題管理"
+        prepend-icon="mdi-file-document-multiple"
+      />
       <!-- 必要に応じて他のメニューも追加 -->
     </v-list>
   </v-navigation-drawer>

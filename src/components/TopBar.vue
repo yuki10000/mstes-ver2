@@ -1,5 +1,11 @@
 <template>
-  <v-app-bar flat elevation="1" class="topbar-light" height="72" style="min-height: 72px; background: #fff; color: #444;">
+  <v-app-bar
+    flat
+    elevation="1"
+    class="topbar-light"
+    height="72"
+    style="min-height: 72px; background: #fff; color: #444"
+  >
     <v-app-bar-nav-icon @click="$emit('toggle-sidebar')" />
     <v-toolbar-title class="text-h5">
       <img src="@/assets/logo.png" alt="logo" class="logo-img" />

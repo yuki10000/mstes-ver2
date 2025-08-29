@@ -1,10 +1,10 @@
 <template>
-  <v-app style="background: #f5f5f5; min-height: 100vh;">
+  <v-app style="background: #f5f5f5; min-height: 100vh">
     <TopBar @toggle-sidebar="toggleSidebar" />
-    <v-main style="background: #f5f5f5; border: none; box-shadow: none;">
-      <div style="display: flex;">
+    <v-main style="background: #f5f5f5; border: none; box-shadow: none">
+      <div style="display: flex">
         <SideBar v-model="sidebarOpen" />
-        <div style="flex: 1;">
+        <div style="flex: 1">
           <slot />
         </div>
       </div>

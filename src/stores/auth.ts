@@ -21,7 +21,8 @@ export const useAuthStore = defineStore('auth', () => {
       const cred = await signInWithEmailAndPassword(auth, email, password)
       user.value = cred.user
     } catch {
-      error.value = 'ログインに失敗しました。メールアドレスまたはパスワードが正しいか確認してください'
+      error.value =
+        'ログインに失敗しました。メールアドレスまたはパスワードが正しいか確認してください'
     } finally {
       loading.value = false
     }
