@@ -1,6 +1,30 @@
 {
-    "referenceCentenceId": 1,
     "sentenceWordGroupList": [
+        {
+            "wordGroupId": 0,
+            "contents": {
+                "upper": {
+                    "contentType": "none"
+                },
+                "middle": {
+                    "contentType": "wordGroupCard",
+                    "wordList": [
+                        {
+                            "id": 0,
+                            "isDropZone": true
+                        },
+                        {
+                            "id": 2,
+                            "isDropZone": false,
+                            "wordText": "は"
+                        }
+                    ]
+                },
+                "lower": {
+                    "contentType": "none"
+                }
+            }
+        },
         {
             "wordGroupId": 1,
             "contents": {
@@ -11,36 +35,13 @@
                     "contentType": "wordGroupCard",
                     "wordList": [
                         {
-                            "id": 1,
-                            "isDropZone": true,
-                            "items": [
-                                {
-                                    "wordGroupId": 6,
-                                    "contents": {
-                                        "upper": {
-                                            "contentType": "none"
-                                        },
-                                        "middle": {
-                                            "contentType": "wordGroupCard",
-                                            "wordList": [
-                                                {
-                                                    "id": 9,
-                                                    "isDropZone": false,
-                                                    "wordText": "太郎"
-                                                }
-                                            ]
-                                        },
-                                        "lower": {
-                                            "contentType": "none"
-                                        }
-                                    }
-                                }
-                            ]
+                            "id": 3,
+                            "isDropZone": true
                         },
                         {
-                            "id": 2,
+                            "id": 5,
                             "isDropZone": false,
-                            "wordText": "は"
+                            "wordText": "を"
                         }
                     ]
                 },
@@ -59,13 +60,36 @@
                     "contentType": "wordGroupCard",
                     "wordList": [
                         {
-                            "id": 3,
+                            "id": 6,
                             "isDropZone": true
                         },
                         {
-                            "id": 4,
+                            "id": 8,
                             "isDropZone": false,
-                            "wordText": "に"
+                            "wordText": "ます"
+                        }
+                    ]
+                },
+                "lower": {
+                    "contentType": "none"
+                }
+            }
+        }
+    ],
+    "draggableWordGroupList": [
+        {
+            "wordGroupId": 3,
+            "contents": {
+                "upper": {
+                    "contentType": "none"
+                },
+                "middle": {
+                    "contentType": "wordGroupCard",
+                    "wordList": [
+                        {
+                            "id": 1,
+                            "isDropZone": false,
+                            "wordText": "太郎"
                         }
                     ]
                 },
@@ -84,13 +108,9 @@
                     "contentType": "wordGroupCard",
                     "wordList": [
                         {
-                            "id": 5,
-                            "isDropZone": true
-                        },
-                        {
-                            "id": 6,
+                            "id": 4,
                             "isDropZone": false,
-                            "wordText": "を"
+                            "wordText": "昼食"
                         }
                     ]
                 },
@@ -110,12 +130,8 @@
                     "wordList": [
                         {
                             "id": 7,
-                            "isDropZone": true
-                        },
-                        {
-                            "id": 8,
                             "isDropZone": false,
-                            "wordText": "ます"
+                            "wordText": "食べ"
                         }
                     ]
                 },
@@ -125,70 +141,6 @@
             }
         }
     ],
-    "draggableWordGroupList": [
-        {
-            "wordGroupId": 7,
-            "contents": {
-                "upper": {
-                    "contentType": "none"
-                },
-                "middle": {
-                    "contentType": "wordGroupCard",
-                    "wordList": [
-                        {
-                            "id": 10,
-                            "isDropZone": false,
-                            "wordText": "ポチ"
-                        }
-                    ]
-                },
-                "lower": {
-                    "contentType": "none"
-                }
-            }
-        },
-        {
-            "wordGroupId": 8,
-            "contents": {
-                "upper": {
-                    "contentType": "none"
-                },
-                "middle": {
-                    "contentType": "wordGroupCard",
-                    "wordList": [
-                        {
-                            "id": 11,
-                            "isDropZone": false,
-                            "wordText": "肉"
-                        }
-                    ]
-                },
-                "lower": {
-                    "contentType": "none"
-                }
-            }
-        },
-        {
-            "wordGroupId": 9,
-            "contents": {
-                "upper": {
-                    "contentType": "none"
-                },
-                "middle": {
-                    "contentType": "wordGroupCard",
-                    "wordList": [
-                        {
-                            "id": 12,
-                            "isDropZone": false,
-                            "wordText": "与え"
-                        }
-                    ]
-                },
-                "lower": {
-                    "contentType": "none"
-                }
-            }
-        }
-    ],
-    "answer": "太郎はポチに肉を与えます"
+    "answer": "太郎は昼食を食べます",
+    "referenceCentenceId": 0
 }

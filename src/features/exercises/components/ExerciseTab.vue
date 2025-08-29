@@ -21,17 +21,16 @@
 import SentenceContainer from './SentenceContainer.vue'
 import DragglableWordGroupArea from './DragglableWordGroupArea.vue'
 
-import { ref } from 'vue'
+import { computed } from 'vue'
 import { useExerciseStore } from '@/stores/exercise'
-
 import { useAnswerString } from '../composables/answer'
 
 const exerciseStore = useExerciseStore()
 
-// storeから初期値を取得しrefで管理
-const referenceSentenceWordGroupList = ref(exerciseStore.referenceWordGroupList)
-const sentenceWordGroupList = ref(exerciseStore.sentenceWordGroupList)
-const draggableWordGroupList = ref(exerciseStore.draggableWordGroupList)
+// storeのstateをcomputedで参照し、問題切り替え時に自動更新
+const referenceSentenceWordGroupList = computed(() => exerciseStore.referenceWordGroupList)
+const sentenceWordGroupList = computed(() => exerciseStore.sentenceWordGroupList)
+const draggableWordGroupList = computed(() => exerciseStore.draggableWordGroupList)
 
 function checkAnswer() {
   const { answerString, isCorrect } = useAnswerString()

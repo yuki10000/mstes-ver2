@@ -1,0 +1,131 @@
+{
+    "sentenceWordGroupList": [
+        {
+            "wordGroupId": 0,
+            "contents": {
+                "upper": {
+                    "contentType": "none"
+                },
+                "middle": {
+                    "contentType": "wordGroupCard",
+                    "wordList": [
+                        {
+                            "id": 0,
+                            "isDropZone": true
+                        }
+                    ]
+                },
+                "lower": {
+                    "contentType": "none"
+                }
+            }
+        },
+        {
+            "wordGroupId": 1,
+            "contents": {
+                "upper": {
+                    "contentType": "none"
+                },
+                "middle": {
+                    "contentType": "wordGroupCard",
+                    "wordList": [
+                        {
+                            "id": 1,
+                            "isDropZone": true
+                        }
+                    ]
+                },
+                "lower": {
+                    "contentType": "none"
+                }
+            }
+        },
+        {
+            "wordGroupId": 2,
+            "contents": {
+                "upper": {
+                    "contentType": "none"
+                },
+                "middle": {
+                    "contentType": "wordGroupCard",
+                    "wordList": [
+                        {
+                            "id": 2,
+                            "isDropZone": true
+                        }
+                    ]
+                },
+                "lower": {
+                    "contentType": "none"
+                }
+            }
+        }
+    ],
+    "draggableWordGroupList": [
+        {
+            "wordGroupId": 3,
+            "contents": {
+                "upper": {
+                    "contentType": "none"
+                },
+                "middle": {
+                    "contentType": "wordGroupCard",
+                    "wordList": [
+                        {
+                            "id": 3,
+                            "isDropZone": false,
+                            "wordText": "Taro"
+                        }
+                    ]
+                },
+                "lower": {
+                    "contentType": "none"
+                }
+            }
+        },
+        {
+            "wordGroupId": 4,
+            "contents": {
+                "upper": {
+                    "contentType": "none"
+                },
+                "middle": {
+                    "contentType": "wordGroupCard",
+                    "wordList": [
+                        {
+                            "id": 4,
+                            "isDropZone": false,
+                            "wordText": "eats"
+                        }
+                    ]
+                },
+                "lower": {
+                    "contentType": "none"
+                }
+            }
+        },
+        {
+            "wordGroupId": 5,
+            "contents": {
+                "upper": {
+                    "contentType": "none"
+                },
+                "middle": {
+                    "contentType": "wordGroupCard",
+                    "wordList": [
+                        {
+                            "id": 5,
+                            "isDropZone": false,
+                            "wordText": "lunch"
+                        }
+                    ]
+                },
+                "lower": {
+                    "contentType": "none"
+                }
+            }
+        }
+    ],
+    "answer": "Taroeatslunch",
+    "referenceCentenceId": 4
+}

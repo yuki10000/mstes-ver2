@@ -1,0 +1,172 @@
+{
+    "sentenceWordGroupList": [
+        {
+            "wordGroupId": 0,
+            "contents": {
+                "upper": {
+                    "contentType": "none"
+                },
+                "middle": {
+                    "contentType": "wordGroupCard",
+                    "wordList": [
+                        {
+                            "id": 0,
+                            "isDropZone": true
+                        }
+                    ]
+                },
+                "lower": {
+                    "contentType": "none"
+                }
+            }
+        },
+        {
+            "wordGroupId": 1,
+            "contents": {
+                "upper": {
+                    "contentType": "none"
+                },
+                "middle": {
+                    "contentType": "wordGroupCard",
+                    "wordList": [
+                        {
+                            "id": 1,
+                            "isDropZone": true
+                        }
+                    ]
+                },
+                "lower": {
+                    "contentType": "none"
+                }
+            }
+        },
+        {
+            "wordGroupId": 2,
+            "contents": {
+                "upper": {
+                    "contentType": "none"
+                },
+                "middle": {
+                    "contentType": "wordGroupCard",
+                    "wordList": [
+                        {
+                            "id": 2,
+                            "isDropZone": true
+                        }
+                    ]
+                },
+                "lower": {
+                    "contentType": "none"
+                }
+            }
+        },
+        {
+            "wordGroupId": 3,
+            "contents": {
+                "upper": {
+                    "contentType": "none"
+                },
+                "middle": {
+                    "contentType": "wordGroupCard",
+                    "wordList": [
+                        {
+                            "id": 3,
+                            "isDropZone": true
+                        }
+                    ]
+                },
+                "lower": {
+                    "contentType": "none"
+                }
+            }
+        }
+    ],
+    "draggableWordGroupList": [
+        {
+            "wordGroupId": 4,
+            "contents": {
+                "upper": {
+                    "contentType": "none"
+                },
+                "middle": {
+                    "contentType": "wordGroupCard",
+                    "wordList": [
+                        {
+                            "id": 4,
+                            "isDropZone": false,
+                            "wordText": "Taro"
+                        }
+                    ]
+                },
+                "lower": {
+                    "contentType": "none"
+                }
+            }
+        },
+        {
+            "wordGroupId": 5,
+            "contents": {
+                "upper": {
+                    "contentType": "none"
+                },
+                "middle": {
+                    "contentType": "wordGroupCard",
+                    "wordList": [
+                        {
+                            "id": 5,
+                            "isDropZone": false,
+                            "wordText": "gives"
+                        }
+                    ]
+                },
+                "lower": {
+                    "contentType": "none"
+                }
+            }
+        },
+        {
+            "wordGroupId": 6,
+            "contents": {
+                "upper": {
+                    "contentType": "none"
+                },
+                "middle": {
+                    "contentType": "wordGroupCard",
+                    "wordList": [
+                        {
+                            "id": 6,
+                            "isDropZone": false,
+                            "wordText": "Pochi"
+                        }
+                    ]
+                },
+                "lower": {
+                    "contentType": "none"
+                }
+            }
+        },
+        {
+            "wordGroupId": 7,
+            "contents": {
+                "upper": {
+                    "contentType": "none"
+                },
+                "middle": {
+                    "contentType": "wordGroupCard",
+                    "wordList": [
+                        {
+                            "id": 7,
+                            "isDropZone": false,
+                            "wordText": "meat"
+                        }
+                    ]
+                },
+                "lower": {
+                    "contentType": "none"
+                }
+            }
+        }
+    ],
+    "answer": "TarogivesPochimeat",
+    "referenceCentenceId": 4
+}

@@ -10,7 +10,7 @@ const router = createRouter({
       meta: { title: 'ホーム' },
     },
     {
-      path: '/exercise',
+      path: '/exercise/:roomId',
       name: 'Exercise',
       component: () => import('../pages/ExerciseView.vue'),
       meta: { title: '演習' },

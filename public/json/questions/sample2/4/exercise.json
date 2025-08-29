@@ -1,0 +1,161 @@
+{
+    "sentenceWordGroupList": [
+        {
+            "wordGroupId": 0,
+            "contents": {
+                "upper": {
+                    "contentType": "label",
+                    "labelSettings": {
+                        "labelText": "S: 誰/何が・は",
+                        "isLineUpper": false,
+                        "isLineLower": true
+                    }
+                },
+                "middle": {
+                    "contentType": "wordGroupCard",
+                    "wordList": [
+                        {
+                            "id": 0,
+                            "isDropZone": true
+                        }
+                    ]
+                },
+                "lower": {
+                    "contentType": "none"
+                }
+            }
+        },
+        {
+            "wordGroupId": 1,
+            "contents": {
+                "upper": {
+                    "contentType": "label",
+                    "labelSettings": {
+                        "labelText": "V: どうする",
+                        "isLineUpper": false,
+                        "isLineLower": true
+                    }
+                },
+                "middle": {
+                    "contentType": "wordGroupCard",
+                    "wordList": [
+                        {
+                            "id": 1,
+                            "isDropZone": true
+                        }
+                    ]
+                },
+                "lower": {
+                    "contentType": "none"
+                }
+            }
+        },
+        {
+            "wordGroupId": 2,
+            "contents": {
+                "upper": {
+                    "contentType": "label",
+                    "labelSettings": {
+                        "labelText": "DO: 誰/何・を",
+                        "isLineUpper": false,
+                        "isLineLower": true
+                    }
+                },
+                "middle": {
+                    "contentType": "wordGroupCard",
+                    "wordList": [
+                        {
+                            "id": 2,
+                            "isDropZone": true
+                        }
+                    ]
+                },
+                "lower": {
+                    "contentType": "none"
+                }
+            }
+        }
+    ],
+    "draggableWordGroupList": [
+        {
+            "wordGroupId": 3,
+            "contents": {
+                "upper": {
+                    "contentType": "none"
+                },
+                "middle": {
+                    "contentType": "wordGroupCard",
+                    "wordList": [
+                        {
+                            "id": 3,
+                            "isDropZone": false,
+                            "wordText": "Taro"
+                        },
+                        {
+                            "id": 4,
+                            "isDropZone": false,
+                            "wordText": "は"
+                        }
+                    ]
+                },
+                "lower": {
+                    "contentType": "none"
+                }
+            }
+        },
+        {
+            "wordGroupId": 4,
+            "contents": {
+                "upper": {
+                    "contentType": "none"
+                },
+                "middle": {
+                    "contentType": "wordGroupCard",
+                    "wordList": [
+                        {
+                            "id": 5,
+                            "isDropZone": false,
+                            "wordText": "eats"
+                        },
+                        {
+                            "id": 6,
+                            "isDropZone": false,
+                            "wordText": "ます"
+                        }
+                    ]
+                },
+                "lower": {
+                    "contentType": "none"
+                }
+            }
+        },
+        {
+            "wordGroupId": 5,
+            "contents": {
+                "upper": {
+                    "contentType": "none"
+                },
+                "middle": {
+                    "contentType": "wordGroupCard",
+                    "wordList": [
+                        {
+                            "id": 7,
+                            "isDropZone": false,
+                            "wordText": "lunch"
+                        },
+                        {
+                            "id": 8,
+                            "isDropZone": false,
+                            "wordText": "を"
+                        }
+                    ]
+                },
+                "lower": {
+                    "contentType": "none"
+                }
+            }
+        }
+    ],
+    "answer": "Taroはeatsますlunchを",
+    "referenceCentenceId": 3
+}

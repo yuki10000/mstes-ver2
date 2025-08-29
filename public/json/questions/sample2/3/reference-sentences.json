@@ -1,0 +1,194 @@
+[
+    {
+        "sentenceId": 0,
+        "sentenceWordGroupList": [
+            {
+                "wordGroupId": 0,
+                "contents": {
+                    "upper": {
+                        "contentType": "none"
+                    },
+                    "middle": {
+                        "contentType": "wordGroupCard",
+                        "wordList": [
+                            {
+                                "id": 0,
+                                "isDropZone": false,
+                                "wordText": "太郎は昼食を食べます"
+                            }
+                        ]
+                    },
+                    "lower": {
+                        "contentType": "none"
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "sentenceId": 1,
+        "sentenceWordGroupList": [
+            {
+                "wordGroupId": 0,
+                "contents": {
+                    "upper": {
+                        "contentType": "none"
+                    },
+                    "middle": {
+                        "contentType": "wordGroupCard",
+                        "wordList": [
+                            {
+                                "id": 0,
+                                "isDropZone": false,
+                                "wordText": "太郎"
+                            },
+                            {
+                                "id": 1,
+                                "isDropZone": false,
+                                "wordText": "は"
+                            }
+                        ]
+                    },
+                    "lower": {
+                        "contentType": "none"
+                    }
+                }
+            },
+            {
+                "wordGroupId": 1,
+                "contents": {
+                    "upper": {
+                        "contentType": "none"
+                    },
+                    "middle": {
+                        "contentType": "wordGroupCard",
+                        "wordList": [
+                            {
+                                "id": 0,
+                                "isDropZone": false,
+                                "wordText": "昼食"
+                            },
+                            {
+                                "id": 1,
+                                "isDropZone": false,
+                                "wordText": "を"
+                            }
+                        ]
+                    },
+                    "lower": {
+                        "contentType": "none"
+                    }
+                }
+            },
+            {
+                "wordGroupId": 2,
+                "contents": {
+                    "upper": {
+                        "contentType": "none"
+                    },
+                    "middle": {
+                        "contentType": "wordGroupCard",
+                        "wordList": [
+                            {
+                                "id": 0,
+                                "isDropZone": false,
+                                "wordText": "食べ"
+                            },
+                            {
+                                "id": 1,
+                                "isDropZone": false,
+                                "wordText": "ます"
+                            }
+                        ]
+                    },
+                    "lower": {
+                        "contentType": "none"
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "sentenceId": 2,
+        "sentenceWordGroupList": [
+            {
+                "wordGroupId": 0,
+                "contents": {
+                    "upper": {
+                        "contentType": "none"
+                    },
+                    "middle": {
+                        "contentType": "wordGroupCard",
+                        "wordList": [
+                            {
+                                "id": 0,
+                                "isDropZone": false,
+                                "wordText": "Taro"
+                            },
+                            {
+                                "id": 1,
+                                "isDropZone": false,
+                                "wordText": "は"
+                            }
+                        ]
+                    },
+                    "lower": {
+                        "contentType": "none"
+                    }
+                }
+            },
+            {
+                "wordGroupId": 1,
+                "contents": {
+                    "upper": {
+                        "contentType": "none"
+                    },
+                    "middle": {
+                        "contentType": "wordGroupCard",
+                        "wordList": [
+                            {
+                                "id": 0,
+                                "isDropZone": false,
+                                "wordText": "lunch"
+                            },
+                            {
+                                "id": 1,
+                                "isDropZone": false,
+                                "wordText": "を"
+                            }
+                        ]
+                    },
+                    "lower": {
+                        "contentType": "none"
+                    }
+                }
+            },
+            {
+                "wordGroupId": 2,
+                "contents": {
+                    "upper": {
+                        "contentType": "none"
+                    },
+                    "middle": {
+                        "contentType": "wordGroupCard",
+                        "wordList": [
+                            {
+                                "id": 0,
+                                "isDropZone": false,
+                                "wordText": "eats"
+                            },
+                            {
+                                "id": 1,
+                                "isDropZone": false,
+                                "wordText": "ます"
+                            }
+                        ]
+                    },
+                    "lower": {
+                        "contentType": "none"
+                    }
+                }
+            }
+        ]
+    }
+]
