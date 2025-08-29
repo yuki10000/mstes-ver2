@@ -1,6 +1,6 @@
 <template>
-  <v-btn color="error" @click="handleLogout" :loading="loading" block>
-    ログアウト
+  <v-btn icon color="white" @click="handleLogout" :loading="loading" aria-label="ログアウト">
+    <v-icon>mdi-logout</v-icon>
   </v-btn>
 </template>
 
