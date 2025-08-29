@@ -13,5 +13,6 @@ main {
   min-height: 100vh;
   padding: 2rem;
   box-sizing: border-box;
+  background-color: #f5f5f5;
 }
 </style>
