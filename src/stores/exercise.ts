@@ -115,7 +115,6 @@ export const useExerciseStore = defineStore('exercise', {
      */
     setSentenceWordGroupList(list: WordGroup[]) {
       this.sentenceWordGroupList = list
-      console.log('changed')
     },
 
     /**
@@ -123,7 +122,6 @@ export const useExerciseStore = defineStore('exercise', {
      */
     setDraggableWordGroupList(list: WordGroup[]) {
       this.draggableWordGroupList = list
-      console.log(list.length)
     },
 
     /**

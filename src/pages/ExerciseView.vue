@@ -2,32 +2,53 @@
   <v-container class="fill-height" fluid>
     <v-row align="center" justify="center">
       <v-col cols="12">
-        <div class="d-flex flex-row align-center mb-4" style="gap: 16px">
-          <v-btn :color="view === 'model' ? 'primary' : 'grey'" @click="view = 'model'"
-            >モデル</v-btn
-          >
-          <v-btn :color="view === 'exercise' ? 'primary' : 'grey'" @click="view = 'exercise'"
-            >演習</v-btn
-          >
-        </div>
+        <v-tabs v-model="view" fixed-tabs class="mb-4">
+          <v-tab value="model">モデル</v-tab>
+          <v-tab value="exercise">演習</v-tab>
+        </v-tabs>
         <v-card elevation="2">
           <v-card-text>
-            <ModelCheckTab v-if="view === 'model'" />
-            <template v-else>
-              <ExerciseTab v-if="!isCurrentReview" />
-              <div v-else class="py-8 text-center">
-                <v-alert type="info" border="start" color="info" variant="tonal">
-                  この問題は復習用です。次の問題へ進んでください。
-                </v-alert>
-              </div>
-            </template>
-            <div class="mt-4" style="text-align: center">
-              <v-btn color="secondary" @click="handleNextQuestion">次の問題</v-btn>
-            </div>
+            <v-window v-model="view">
+              <v-window-item value="model">
+                <ModelCheckTab />
+              </v-window-item>
+              <v-window-item value="exercise">
+                <template v-if="!isCurrentReview">
+                  <ExerciseTab @answered="onAnswered" />
+                </template>
+                <template v-else>
+                  <div class="py-8 text-center">
+                    <v-alert type="info" border="start" color="info" variant="tonal">
+                      この問題は復習用です。次の問題へ進んでください。
+                    </v-alert>
+                  </div>
+                </template>
+              </v-window-item>
+            </v-window>
           </v-card-text>
         </v-card>
+        <!-- 右下に小さな次へボタン -->
+        <v-btn
+          icon
+          color="primary"
+          class="next-fab"
+          @click="handleNextButton"
+          style="position: fixed; top: 32px; right: 32px; z-index: 1000"
+          size="small"
+        >
+          <v-icon>mdi-chevron-double-right</v-icon>
+        </v-btn>
       </v-col>
     </v-row>
+    <v-dialog v-model="showNextWarning" max-width="320">
+      <v-card>
+        <v-card-title class="text-h6 text-center">演習に正解していません</v-card-title>
+        <v-card-actions class="justify-center" style="gap: 16px">
+          <v-btn color="grey" @click="showNextWarning = false">戻る</v-btn>
+          <v-btn color="primary" @click="proceedAnyway">次の変換に進む</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -41,6 +62,8 @@ import { useRoute } from 'vue-router'
 const view = ref('model')
 const exerciseStore = useExerciseStore()
 const route = useRoute()
+const showNextWarning = ref(false)
+const lastIsCorrect = ref(false)
 
 async function loadRoomQuestions(roomId: string) {
   // /json/rooms/{roomId}.json からquestionListを取得しstoreにセット
@@ -75,8 +98,21 @@ const isCurrentReview = computed(() => {
   return q && q.isReview === true
 })
 
-async function handleNextQuestion() {
+function onAnswered(isCorrect: boolean) {
+  lastIsCorrect.value = isCorrect
+}
+
+async function handleNextButton() {
+  if (!isCurrentReview.value && !lastIsCorrect.value) {
+    showNextWarning.value = true
+    return
+  }
   await exerciseStore.nextQuestion()
+}
+
+const proceedAnyway = () => {
+  showNextWarning.value = false
+  exerciseStore.nextQuestion()
 }
 </script>
 
