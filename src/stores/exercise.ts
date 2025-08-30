@@ -13,11 +13,6 @@ export interface GraphLink {
   isConnected: boolean
   answer: string[]
 }
-// 参照文の型
-export interface ReferenceSentence {
-  sentenceId: number
-  sentenceWordGroupList: WordGroup[]
-}
 
 export const useExerciseStore = defineStore('exercise', {
   state: () => ({
@@ -37,8 +32,7 @@ export const useExerciseStore = defineStore('exercise', {
     mainMessage: '' as string,
     // 進行履歴
     completedLinkIds: [] as number[],
-    // 参照文（reference-sentences.json）
-    referenceSentences: [] as ReferenceSentence[],
+    // 参照文（未使用）
   }),
   actions: {
     /**
@@ -74,16 +68,7 @@ export const useExerciseStore = defineStore('exercise', {
       this.currentTranslationId = translationId
     },
 
-    /**
-     * reference-sentences.jsonをロードし、storeのreferenceSentencesに保存する関数。
-     * @param translationId 対象のtranslationId
-     */
-    async loadReferenceSentences(translationId: number) {
-      const refRes = await fetch(
-        `/json/questions/sample3/${translationId}/reference-sentences.json`,
-      )
-      this.referenceSentences = await refRes.json()
-    },
+
 
     /**
      * 「作成する」ボタンで呼ばれる。指定リンクのtargetNodeIdの演習データをロードする関数。
@@ -108,7 +93,6 @@ export const useExerciseStore = defineStore('exercise', {
       }
       if (nextTranslationId !== null) {
         await this.loadExerciseData(nextTranslationId)
-        await this.loadReferenceSentences(nextTranslationId)
       }
     },
 
