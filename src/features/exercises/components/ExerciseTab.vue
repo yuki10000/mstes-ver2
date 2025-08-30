@@ -127,16 +127,43 @@ function handleNextConfirm() {
 
 // 未正解で進む場合: 既存の解放されているノードから距離1で繋がっている全てのリンクを解放
 function unlockAllDistance1Links() {
-  // 進行可能なリンクを全て開放
-  const availableLinks = exerciseStore.getAvailableLinks()
-  for (const link of availableLinks) {
-    if (!link.isConnected) {
-      link.isConnected = true
-      exerciseStore.completedLinkIds.push(link.linkId)
+  const currentTranslationId = exerciseStore.currentTranslationId
+  // 1. 既存の解放済みノードを列挙
+  const openNodeIds = new Set<number>()
+  exerciseStore.nodeList.forEach(node => {
+    // ルートノード or どこかからisConnectedなリンクで到達できるノード
+    const isRoot = exerciseStore.linkList.every(l => l.targetNodeId !== node.nodeId)
+    const hasConnectedLink = exerciseStore.linkList.some(l => l.targetNodeId === node.nodeId && l.isConnected)
+    if (isRoot || hasConnectedLink) {
+      openNodeIds.add(node.nodeId)
     }
+  })
+  // 2. 各openNodeから距離1で繋がっているリンクのうち、
+  //    sourceNodeのtranslationIdが現在のtranslationIdと一致するものだけ開放
+  const linksToOpen: number[] = []
+  for (const nodeId of openNodeIds) {
+    exerciseStore.linkList.forEach(link => {
+      if (
+        link.sourceNodeId === nodeId &&
+        !link.isConnected
+      ) {
+        // sourceNodeのtranslationIdを取得
+        const sourceNode = exerciseStore.nodeList.find(n => n.nodeId === link.sourceNodeId)
+        if (sourceNode && sourceNode.translationId === currentTranslationId) {
+          linksToOpen.push(link.linkId)
+        }
+      }
+    })
   }
-  // linkListを新しい配列で置き換えてリアクティブに
-  exerciseStore.linkList = [...exerciseStore.linkList]
+  // 3. 開放
+  const newLinkList = exerciseStore.linkList.map(link => {
+    if (linksToOpen.includes(link.linkId)) {
+      exerciseStore.completedLinkIds.push(link.linkId)
+      return { ...link, isConnected: true }
+    }
+    return link
+  })
+  exerciseStore.linkList = newLinkList
 }
 
 function handleBackToGraph() {

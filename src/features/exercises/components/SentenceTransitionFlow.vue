@@ -201,8 +201,8 @@ async function handleStartExercise(nodeId: number, parentTranslationId: number |
 
 .start-btn {
   margin-top: 8px;
-  width: 120px;
-  height: 40px;
+  width: 150px;
+  height: 50px;
   background: #1976d2;
   color: #fff;
   border: none;
