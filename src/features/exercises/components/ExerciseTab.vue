@@ -39,7 +39,7 @@
           <SentenceContainer :wordGroupList="sentenceWordGroupList" />
         </v-col>
         <v-col cols="12">
-          <DragglableWordGroupArea :localList="draggableWordGroupList" />
+          <DragglableWordGroupArea :wordGroupList="draggableWordGroupList" />
         </v-col>
       </v-row>
       <div class="mt-8" style="text-align: center" v-if="!showMessage && !lastIsCorrect">

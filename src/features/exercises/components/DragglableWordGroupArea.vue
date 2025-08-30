@@ -1,7 +1,7 @@
 <template>
   <v-card class="pa-4 d-flex flex-row justify-center align-center" elevation="2" min-height="100">
     <draggable
-      v-model="localList"
+      v-model="wordGroupList"
       group="words"
       item-key="wordGroupId"
       class="d-flex flex-row flex-nowrap justify-center align-center w-100 h-100"
@@ -22,14 +22,14 @@ import WordGroupSection from './WordGroupSection.vue'
 import type { WordGroup } from '@/types/exercise'
 import { useExerciseStore } from '@/stores/exercise'
 
-const props = defineProps<{ localList: WordGroup[] }>()
-const localList = ref<WordGroup[]>(props.localList)
+const props = defineProps<{ wordGroupList: WordGroup[] }>()
+const wordGroupList = ref<WordGroup[]>(props.wordGroupList)
 const exerciseStore = useExerciseStore()
 
 watch(
-  () => props.localList,
+  () => props.wordGroupList,
   (val) => {
-    localList.value = val
+    wordGroupList.value = val
   },
 )
 
