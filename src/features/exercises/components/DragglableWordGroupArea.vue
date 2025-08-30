@@ -20,8 +20,8 @@ import { ref, watch } from 'vue'
 import draggable from 'vuedraggable'
 import WordGroupSection from './WordGroupSection.vue'
 import type { WordGroup } from '@/types/exercise'
-
 import { useExerciseStore } from '@/stores/exercise'
+
 const props = defineProps<{ localList: WordGroup[] }>()
 const localList = ref<WordGroup[]>(props.localList)
 const exerciseStore = useExerciseStore()

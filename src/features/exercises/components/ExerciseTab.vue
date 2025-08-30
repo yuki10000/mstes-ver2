@@ -2,10 +2,28 @@
   <div class="exercise-tab-root">
     <!-- 右上固定の次の問題ボタン -->
     <div class="next-btn-fixed">
-      <v-btn color="primary" class="graph-btn-style" @click="handleBackToGraph" elevation="2" rounded icon size="56" style="margin-bottom: 12px;" :disabled="lastIsCorrect">
+      <v-btn
+        color="primary"
+        class="graph-btn-style"
+        @click="handleBackToGraph"
+        elevation="2"
+        rounded
+        icon
+        size="56"
+        style="margin-bottom: 12px"
+        :disabled="lastIsCorrect"
+      >
         <v-icon size="32" color="white">mdi-graph</v-icon>
       </v-btn>
-      <v-btn color="primary" class="next-btn-style" @click="onNextClick" elevation="2" rounded icon size="56">
+      <v-btn
+        color="primary"
+        class="next-btn-style"
+        @click="onNextClick"
+        elevation="2"
+        rounded
+        icon
+        size="56"
+      >
         <v-icon size="32" color="white">mdi-chevron-double-right</v-icon>
       </v-btn>
     </div>
@@ -62,15 +80,18 @@ import ExerciseMessageModal from './AnswerResultModal.vue'
 const exerciseStore = useExerciseStore()
 const emit = defineEmits(['answered', 'back-to-graph'])
 
-// storeのstateをcomputedで参照し、問題切り替え時に自動更新
-// translationModel（translation-model.json）からsentenceId一致のものを参照
+// translationModel（translation-model.json）から現在のsentenceId一致のものを参照するcomputed。
 const referenceSentenceWordGroupList = computed(() => {
   const ref = exerciseStore.translationModel.find(
     (s) => s.sentenceId === exerciseStore.currentTranslationId,
   )
   return ref ? ref.sentenceWordGroupList : []
 })
+
+// 現在の演習文wordGroupListを参照するcomputed。
 const sentenceWordGroupList = computed(() => exerciseStore.sentenceWordGroupList)
+
+// 現在のドラッグ可能wordGroupListを参照するcomputed。
 const draggableWordGroupList = computed(() => exerciseStore.draggableWordGroupList)
 
 const showMessage = ref(false)
@@ -81,7 +102,7 @@ const lastAnswerString = ref('')
 const showNextConfirm = ref(false)
 const nextConfirmMessage = ref('')
 
-// 問題切り替え時に正誤状態をリセット
+// 問題切り替え時に正誤状態をリセットするwatch。
 watch(
   () => exerciseStore.currentTranslationId,
   () => {
@@ -89,6 +110,9 @@ watch(
   },
 )
 
+/**
+ * 回答をチェックし、正誤判定・モーダル表示・正解時はリンク開放を行う関数。
+ */
 function checkAnswer() {
   const { answerString, isCorrect } = useAnswerString()
   lastIsCorrect.value = isCorrect.value
@@ -101,13 +125,18 @@ function checkAnswer() {
   emit('answered', isCorrect.value)
 }
 
+/**
+ * モーダルの「次の問題に進む」ボタン押下時に呼ばれ、グラフ画面に戻す関数。
+ */
 function handleNext() {
   showMessage.value = false
   emit('back-to-graph')
 }
 
+/**
+ * 右上「次の問題」ボタン押下時に確認ダイアログを表示する関数。
+ */
 function onNextClick() {
-  // すでに正解しているかどうか
   if (lastIsCorrect.value) {
     nextConfirmMessage.value = '次の問題に進んでもいいですか？'
   } else {
@@ -116,24 +145,31 @@ function onNextClick() {
   showNextConfirm.value = true
 }
 
+/**
+ * 「次の問題に進む」ダイアログで「進む」選択時に呼ばれ、
+ * 未正解なら距離1リンクを開放し、グラフ画面に戻す関数。
+ */
 function handleNextConfirm() {
   showNextConfirm.value = false
-  // 未正解で進む場合は距離1の全リンクを解放
   if (!lastIsCorrect.value) {
     unlockAllDistance1Links()
   }
   emit('back-to-graph')
 }
 
-// 未正解で進む場合: 既存の解放されているノードから距離1で繋がっている全てのリンクを解放
+/**
+ * 未正解で進む場合に呼ばれる。
+ * 既存の解放済みノードから、現在のtranslationIdと同じsourceNodeの距離1リンクのみを開放する関数。
+ */
 function unlockAllDistance1Links() {
   const currentTranslationId = exerciseStore.currentTranslationId
   // 1. 既存の解放済みノードを列挙
   const openNodeIds = new Set<number>()
-  exerciseStore.nodeList.forEach(node => {
-    // ルートノード or どこかからisConnectedなリンクで到達できるノード
-    const isRoot = exerciseStore.linkList.every(l => l.targetNodeId !== node.nodeId)
-    const hasConnectedLink = exerciseStore.linkList.some(l => l.targetNodeId === node.nodeId && l.isConnected)
+  exerciseStore.nodeList.forEach((node) => {
+    const isRoot = exerciseStore.linkList.every((l) => l.targetNodeId !== node.nodeId)
+    const hasConnectedLink = exerciseStore.linkList.some(
+      (l) => l.targetNodeId === node.nodeId && l.isConnected,
+    )
     if (isRoot || hasConnectedLink) {
       openNodeIds.add(node.nodeId)
     }
@@ -142,13 +178,9 @@ function unlockAllDistance1Links() {
   //    sourceNodeのtranslationIdが現在のtranslationIdと一致するものだけ開放
   const linksToOpen: number[] = []
   for (const nodeId of openNodeIds) {
-    exerciseStore.linkList.forEach(link => {
-      if (
-        link.sourceNodeId === nodeId &&
-        !link.isConnected
-      ) {
-        // sourceNodeのtranslationIdを取得
-        const sourceNode = exerciseStore.nodeList.find(n => n.nodeId === link.sourceNodeId)
+    exerciseStore.linkList.forEach((link) => {
+      if (link.sourceNodeId === nodeId && !link.isConnected) {
+        const sourceNode = exerciseStore.nodeList.find((n) => n.nodeId === link.sourceNodeId)
         if (sourceNode && sourceNode.translationId === currentTranslationId) {
           linksToOpen.push(link.linkId)
         }
@@ -156,7 +188,7 @@ function unlockAllDistance1Links() {
     })
   }
   // 3. 開放
-  const newLinkList = exerciseStore.linkList.map(link => {
+  const newLinkList = exerciseStore.linkList.map((link) => {
     if (linksToOpen.includes(link.linkId)) {
       exerciseStore.completedLinkIds.push(link.linkId)
       return { ...link, isConnected: true }
@@ -166,6 +198,9 @@ function unlockAllDistance1Links() {
   exerciseStore.linkList = newLinkList
 }
 
+/**
+ * 右上「グラフ確認」ボタン押下時にグラフ画面に戻す関数。
+ */
 function handleBackToGraph() {
   emit('back-to-graph')
 }

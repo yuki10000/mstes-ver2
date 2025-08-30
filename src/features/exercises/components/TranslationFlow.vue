@@ -25,7 +25,6 @@
 </template>
 
 <script setup lang="ts">
-
 import '@vue-flow/core/dist/style.css'
 import { computed, defineEmits } from 'vue'
 import { VueFlow } from '@vue-flow/core'
@@ -33,23 +32,25 @@ import SentenceContainer from './SentenceContainer.vue'
 import { useExerciseStore } from '@/stores/exercise'
 import type { GraphNode, GraphLink } from '@/stores/exercise'
 
-
 const emit = defineEmits(['start-exercise'])
 const exerciseStore = useExerciseStore()
 
-// 木構造レイアウト計算
+/**
+ * グラフの木構造レイアウトを計算し、各ノードの座標・深さを返す関数。
+ * @param nodeList ノード配列
+ * @param linkList リンク配列
+ * @returns nodeDepth, nodePos
+ */
 function calcTreeLayout(
   nodeList: GraphNode[],
   linkList: GraphLink[],
 ): { nodeDepth: Record<number, number>; nodePos: Record<number, { x: number; y: number }> } {
-  // 1. 各ノードの親を調べる
+  // ...existing code...
   const parents: Record<number, number> = {}
   linkList.forEach((link: GraphLink) => {
     parents[link.targetNodeId] = link.sourceNodeId
   })
-  // 2. ルートノードを探す（親がいないノード）
   const rootNodes = nodeList.filter((n) => !(n.nodeId in parents))
-  // 3. 各ノードのdepthを計算
   const nodeDepth: Record<number, number> = {}
   function setDepth(nodeId: number, depth: number) {
     nodeDepth[nodeId] = depth
@@ -60,14 +61,12 @@ function calcTreeLayout(
       })
   }
   rootNodes.forEach((root) => setDepth(root.nodeId, 0))
-  // 4. depthごとにノードをグループ化
   const depthGroups: Record<number, number[]> = {}
   nodeList.forEach((n) => {
     const d = nodeDepth[n.nodeId] ?? 0
     if (!depthGroups[d]) depthGroups[d] = []
     depthGroups[d].push(n.nodeId)
   })
-  // 5. 各ノードのx/y座標を決定（同じ高さのノードは中央揃えで横方向に間隔をとる）
   const nodePos: Record<number, { x: number; y: number }> = {}
   const xGap = 1000,
     yGap = 180,
@@ -76,7 +75,6 @@ function calcTreeLayout(
     const depth: number = parseInt(depthStr, 10)
     const nodeIds: number[] = ids as number[]
     const count: number = nodeIds.length
-    // 横方向の中央揃え計算
     const totalWidth: number = (count - 1) * xGap
     const xStart: number = 100 - totalWidth / 2
     nodeIds.forEach((nodeId: number, i: number) => {
@@ -89,10 +87,17 @@ function calcTreeLayout(
   return { nodeDepth, nodePos }
 }
 
-// ノードが「作成済み」かどうかを判定する関数
+/**
+ * 指定ノードが「作成済み」かどうかを判定する関数。
+ * ルートノードまたはisConnectedなリンクで到達できる場合true。
+ * @param nodeId ノードID
+ * @param nodeList ノード配列
+ * @param linkList リンク配列
+ * @returns 作成済みならtrue
+ */
 function isNodeCreated(nodeId: number, nodeList: GraphNode[], linkList: GraphLink[]): boolean {
+  // ...existing code...
   if (nodeList.length === 0) return false
-  // ルートノード（親がいないノード）は常に作成済み
   const parents: Record<number, number> = {}
   linkList.forEach((link) => {
     parents[link.targetNodeId] = link.sourceNodeId
@@ -100,14 +105,15 @@ function isNodeCreated(nodeId: number, nodeList: GraphNode[], linkList: GraphLin
   const rootNode = nodeList.find((n) => !(n.nodeId in parents))
   if (!rootNode) return false
   if (nodeId === rootNode.nodeId) return true
-  // それ以外は、isConnectedなリンクで到達できる場合のみ作成済み
-  // 逆引き: targetNodeId => link
   const incomingLinks = linkList.filter((l) => l.targetNodeId === nodeId && l.isConnected)
   if (incomingLinks.length === 0) return false
-  // どれかの親ノードが作成済みならOK
   return incomingLinks.some((l) => isNodeCreated(l.sourceNodeId, nodeList, linkList))
 }
 
+/**
+ * グラフ描画用のノード配列を返すcomputed。
+ * 各ノードの座標・作成済み判定・sentenceデータを含む。
+ */
 const nodes = computed(() => {
   const { nodeList, linkList, translationModel } = exerciseStore
   if (!nodeList.length) return []
@@ -126,7 +132,10 @@ const nodes = computed(() => {
   })
 })
 
-// エッジ: storeのlinkListから生成
+/**
+ * グラフ描画用のエッジ配列を返すcomputed。
+ * 各エッジの色・アニメーションも含む。
+ */
 const edges = computed(() =>
   exerciseStore.linkList.map((link) => ({
     id: String(link.linkId),
@@ -142,27 +151,34 @@ const edges = computed(() =>
   })),
 )
 
-// 進行可能なリンクのtargetNodeIdリスト
+/**
+ * 進行可能なリンクのtargetNodeIdリストを返すcomputed。
+ */
 const availableTargetNodeIds = computed(() =>
   exerciseStore.getAvailableLinks().map((link) => link.targetNodeId),
 )
 
-// 指定ノードの親ノードのtranslationIdを取得
+/**
+ * 指定ノードの親ノードのtranslationIdを取得する関数。
+ * @param nodeId ノードID
+ * @returns 親ノードのtranslationId or null
+ */
 function getParentTranslationId(nodeId: number): number | null {
-  // 対応するリンク（targetNodeIdがnodeId）を取得
   const link = exerciseStore.linkList.find((l) => l.targetNodeId === nodeId)
   if (!link) return null
-  // 親ノードを取得
   const parentNode = exerciseStore.nodeList.find((n) => n.nodeId === link.sourceNodeId)
   return parentNode?.translationId ?? null
 }
 
-// 「作成する」ボタン押下時
+/**
+ * 「作成する」ボタン押下時に呼ばれる関数。
+ * 対応するリンクをstoreに渡し、演習タブに切り替えをemitする。
+ * @param nodeId ノードID
+ * @param parentTranslationId 親ノードのtranslationId
+ */
 async function handleStartExercise(nodeId: number, parentTranslationId: number | null) {
-  // 対応するリンクを取得
   const link = exerciseStore.linkList.find((l) => l.targetNodeId === nodeId && !l.isConnected)
   if (link) {
-    // parentTranslationIdをstoreのメソッドに渡す
     await exerciseStore.startExerciseByLink(link.linkId, parentTranslationId)
     emit('start-exercise')
   }
