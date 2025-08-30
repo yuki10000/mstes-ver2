@@ -144,5 +144,6 @@
     "answerList": [
         "lunchをPaulはeatsます"
     ],
-    "referenceCentenceId": 3
+    "referenceCentenceId": 3,
+    "mainMessage": "文法的なラベルの無い文を完成させましょう"
 }

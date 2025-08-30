@@ -30,6 +30,13 @@
     <v-container fluid>
       <v-row>
         <v-col cols="12">
+          <div class="main-message" v-if="mainMessage">
+            {{ mainMessage }}
+          </div>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="12">
           <SentenceContainer :wordGroupList="referenceSentenceWordGroupList" />
         </v-col>
         <v-col cols="12" class="d-flex justify-center">
@@ -101,6 +108,9 @@ const lastAnswerString = ref('')
 // 次の問題に進む確認ダイアログ
 const showNextConfirm = ref(false)
 const nextConfirmMessage = ref('')
+
+// 各問題ごとのmainMessageをstoreから取得するcomputed。
+const mainMessage = computed(() => exerciseStore.mainMessage)
 
 // 問題切り替え時に正誤状態をリセットするwatch。
 watch(
@@ -246,5 +256,12 @@ function handleBackToGraph() {
   align-items: center;
   justify-content: center;
   box-shadow: 0 2px 8px rgba(25, 118, 210, 0.15);
+}
+.main-message {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1976d2;
+  margin-bottom: 12px;
+  text-align: center;
 }
 </style>

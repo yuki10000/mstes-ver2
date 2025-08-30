@@ -160,5 +160,6 @@
         "Paulはlunchをeatsます",
         "lunchをPaulはeatsます"
     ],
-    "referenceCentenceId": 2
+    "referenceCentenceId": 2,
+    "mainMessage": "日本語の語順に並び替えましょう"
 }

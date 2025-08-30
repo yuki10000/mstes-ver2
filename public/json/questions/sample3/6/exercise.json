@@ -144,5 +144,6 @@
     "answerList": [
         "ポールは昼食を食べます"
     ],
-    "referenceCentenceId": 6
+    "referenceCentenceId": 6,
+    "mainMessage": "英単語を和語に翻訳して和文を完成させましょう"
 }

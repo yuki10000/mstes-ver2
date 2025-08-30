@@ -34,6 +34,7 @@ export const useExerciseStore = defineStore('exercise', {
     sentenceWordGroupList: [] as WordGroup[],
     draggableWordGroupList: [] as WordGroup[],
     answerList: [] as string[],
+    mainMessage: '' as string,
     // 進行履歴
     completedLinkIds: [] as number[],
     // 参照文（reference-sentences.json）
@@ -69,6 +70,7 @@ export const useExerciseStore = defineStore('exercise', {
       this.sentenceWordGroupList = exData.sentenceWordGroupList
       this.draggableWordGroupList = exData.draggableWordGroupList
       this.answerList = exData.answerList ?? []
+      this.mainMessage = exData.mainMessage ?? ''
       this.currentTranslationId = translationId
     },
 

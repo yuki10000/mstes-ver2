@@ -159,5 +159,6 @@
     "answerList": [
         "Paulはeatsますlunchを"
     ],
-    "referenceCentenceId": 1
+    "referenceCentenceId": 1,
+    "mainMessage": "機能語をつけた文を作成しましょう"
 }

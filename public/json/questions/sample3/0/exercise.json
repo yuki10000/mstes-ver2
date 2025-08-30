@@ -151,5 +151,6 @@
     "answerList": [
         "S: 誰/何が・はV: どうするDO: 誰/何を"
     ],
-    "referenceCentenceId": 0
+    "referenceCentenceId": 0,
+    "mainMessage": "文法的なラベルをつけましょう"
 }
