@@ -60,14 +60,11 @@ import PageLayout from '@/components/PageLayout.vue'
 
 const dialog = ref(false)
 const selectedDemo = ref('')
-const demoOptions = [
-  { text: 'Demo1', value: 'room1' },
-  { text: 'Demo2', value: 'room2' },
-]
+const demoOptions = [{ text: 'Demo1', value: ' ' }]
 
 const openDemo = () => {
   if (selectedDemo.value) {
-    window.open(`/demo/${selectedDemo.value}`, '_blank')
+    window.open(`/exercise/${selectedDemo.value}`, '_blank')
     dialog.value = false
   }
 }

@@ -201,14 +201,19 @@ async function handleStartExercise(nodeId: number, parentTranslationId: number |
 
 .start-btn {
   margin-top: 8px;
-  padding: 4px 12px;
+  width: 120px;
+  height: 40px;
   background: #1976d2;
   color: #fff;
   border: none;
-  border-radius: 6px;
-  font-size: 14px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
   cursor: pointer;
   transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .start-btn:hover {
   background: #1565c0;

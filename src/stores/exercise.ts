@@ -181,17 +181,22 @@ export const useExerciseStore = defineStore('exercise', {
       if (!link) return
       this.currentLinkId = linkId
       this.currentNodeId = link.targetNodeId
-      // 親ノードのtranslationIdで演習データと参照文データをロード
+      // 現在のtranslationId
+      let nextTranslationId: number | null = null
       if (parentTranslationId !== null) {
-        await this.loadExerciseData(parentTranslationId)
-        await this.loadReferenceSentences(parentTranslationId)
+        nextTranslationId = parentTranslationId
       } else {
-        // fallback: targetNodeのtranslationIdで従来通りロード
         const targetNode = this.nodeList.find(n => n.nodeId === link.targetNodeId)
-        if (targetNode) {
-          await this.loadExerciseData(targetNode.translationId ?? 0)
-          await this.loadReferenceSentences(targetNode.translationId ?? 0)
-        }
+        nextTranslationId = targetNode?.translationId ?? null
+      }
+      // すでに同じtranslationIdなら何もしない（stateを保持）
+      if (nextTranslationId !== null && this.currentTranslationId === nextTranslationId) {
+        return
+      }
+      // translationIdが異なる場合のみリセット・ロード
+      if (nextTranslationId !== null) {
+        await this.loadExerciseData(nextTranslationId)
+        await this.loadReferenceSentences(nextTranslationId)
       }
     },
 

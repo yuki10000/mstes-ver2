@@ -2,6 +2,9 @@
   <div class="exercise-tab-root">
     <!-- 右上固定の次の問題ボタン -->
     <div class="next-btn-fixed">
+      <v-btn color="primary" class="graph-btn-style" @click="handleBackToGraph" elevation="2" rounded icon size="56" style="margin-bottom: 12px;" :disabled="lastIsCorrect">
+        <v-icon size="32" color="white">mdi-graph</v-icon>
+      </v-btn>
       <v-btn color="primary" class="next-btn-style" @click="onNextClick" elevation="2" rounded icon size="56">
         <v-icon size="32" color="white">mdi-chevron-double-right</v-icon>
       </v-btn>
@@ -135,6 +138,10 @@ function unlockAllDistance1Links() {
   // linkListを新しい配列で置き換えてリアクティブに
   exerciseStore.linkList = [...exerciseStore.linkList]
 }
+
+function handleBackToGraph() {
+  emit('back-to-graph')
+}
 //
 // スタイル
 </script>
@@ -148,6 +155,22 @@ function unlockAllDistance1Links() {
   top: 16px;
   right: 24px;
   z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.graph-btn-style {
+  background-color: #1976d2 !important;
+  color: #fff !important;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 50% !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
 }
 .next-btn-style {
   background-color: #1976d2 !important;
