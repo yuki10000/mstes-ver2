@@ -4,12 +4,7 @@
             "wordGroupId": 0,
             "contents": {
                 "upper": {
-                    "contentType": "label",
-                    "labelSettings": {
-                        "labelText": "S: 誰/何が・は",
-                        "isLineUpper": false,
-                        "isLineLower": true
-                    }
+                    "contentType": "none"
                 },
                 "middle": {
                     "contentType": "wordGroupCard",
@@ -29,12 +24,7 @@
             "wordGroupId": 1,
             "contents": {
                 "upper": {
-                    "contentType": "label",
-                    "labelSettings": {
-                        "labelText": "V: どうする",
-                        "isLineUpper": false,
-                        "isLineLower": true
-                    }
+                    "contentType": "none"
                 },
                 "middle": {
                     "contentType": "wordGroupCard",
@@ -54,12 +44,7 @@
             "wordGroupId": 2,
             "contents": {
                 "upper": {
-                    "contentType": "label",
-                    "labelSettings": {
-                        "labelText": "DO: 誰/何・を",
-                        "isLineUpper": false,
-                        "isLineLower": true
-                    }
+                    "contentType": "none"
                 },
                 "middle": {
                     "contentType": "wordGroupCard",
@@ -89,7 +74,7 @@
                         {
                             "id": 3,
                             "isDropZone": false,
-                            "wordText": "Taro"
+                            "wordText": "Paul"
                         },
                         {
                             "id": 4,
@@ -99,7 +84,12 @@
                     ]
                 },
                 "lower": {
-                    "contentType": "none"
+                    "contentType": "label",
+                    "labelSettings": {
+                        "labelText": "S: 誰/何が・は",
+                        "isLineUpper": true,
+                        "isLineLower": false
+                    }
                 }
             }
         },
@@ -125,7 +115,12 @@
                     ]
                 },
                 "lower": {
-                    "contentType": "none"
+                    "contentType": "label",
+                    "labelSettings": {
+                        "labelText": "V: どうする",
+                        "isLineUpper": true,
+                        "isLineLower": false
+                    }
                 }
             }
         },
@@ -151,11 +146,19 @@
                     ]
                 },
                 "lower": {
-                    "contentType": "none"
+                    "contentType": "label",
+                    "labelSettings": {
+                        "labelText": "DO: 誰/何を",
+                        "isLineUpper": true,
+                        "isLineLower": false
+                    }
                 }
             }
         }
     ],
-    "answer": "Taroはeatsますlunchを",
-    "referenceCentenceId": 3
+    "answerList": [
+        "Paulはlunchをeatsます",
+        "lunchをPaulはeatsます"
+    ],
+    "referenceCentenceId": 2
 }

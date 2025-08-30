@@ -1,115 +1,78 @@
 import { defineStore } from 'pinia'
 import type { WordGroup, Sentence } from '@/types/exercise'
 
-// questionListの型
-export interface QuestionItem {
-  questionId: string
-  phaseId: string
-  isReview?: boolean
+export interface GraphNode {
+  nodeId: number
+  sentenceId: number
+  translationId: number | null
+}
+export interface GraphLink {
+  linkId: number
+  sourceNodeId: number
+  targetNodeId: number
+  isConnected: boolean
+  answer: string[]
+}
+// 参照文の型
+export interface ReferenceSentence {
+  sentenceId: number
+  sentenceWordGroupList: WordGroup[]
 }
 
 export const useExerciseStore = defineStore('exercise', {
   state: () => ({
-    referenceCentenceId: 0 as number,
+    // グラフ構造
+    nodeList: [] as GraphNode[],
+    linkList: [] as GraphLink[],
+    // 翻訳モデル
+    translationModel: [] as Sentence[],
+    // 現在の進行状況
+    currentTranslationId: 0 as number,
+    currentNodeId: 0 as number,
+    currentLinkId: null as number | null,
+    // 現在の演習データ
     sentenceWordGroupList: [] as WordGroup[],
     draggableWordGroupList: [] as WordGroup[],
-    referenceSentenceList: [] as Sentence[],
-    sentencesList: [] as Sentence[],
-    referenceWordGroupList: [] as WordGroup[],
-    answer: '' as string,
-    // 問題群のリスト
-    questionList: [] as QuestionItem[],
-    currentIndex: 0 as number, // 現在のインデックス
+    answerList: [] as string[],
+    // 進行履歴
+    completedLinkIds: [] as number[],
+    // 参照文（reference-sentences.json）
+    referenceSentences: [] as ReferenceSentence[],
   }),
   actions: {
     /**
-     * 現在の問題のパスを取得
+     * 回答文字列と一致する全てのリンクを開放し、グラフを更新
      */
-    getCurrentPath() {
-      const { questionId, phaseId } = this.questionList[this.currentIndex]
-      return `/json/questions/${questionId}/${phaseId}`
-    },
-
     /**
-     * 現在の問題が復習用かどうかを判定
+     * 正解時、親リンクがisConnectedなものだけを開放（1距離のみ）
      */
-    isCurrentReview() {
-      const q = this.questionList[this.currentIndex]
-      return q && q.isReview === true
+    completeLinksByAnswer(answer: string) {
+      let updated = false
+      // まず、親リンクがすでにisConnectedなものを列挙
+      const canOpen = this.linkList.filter(link => {
+        if (link.isConnected) return false
+        // 親リンクがすべてisConnected or ルート
+        const incoming = this.linkList.filter(l => l.targetNodeId === link.sourceNodeId)
+        if (incoming.length === 0) return true
+        return incoming.every(l => l.isConnected)
+      })
+      // その中でanswerが一致するものだけ開放
+      const newLinkList = this.linkList.map(link => {
+        if (
+          !link.isConnected &&
+          canOpen.some(l => l.linkId === link.linkId) &&
+          Array.isArray(link.answer) &&
+          link.answer.includes(answer)
+        ) {
+          updated = true
+          this.completedLinkIds.push(link.linkId)
+          return { ...link, isConnected: true }
+        }
+        return link
+      })
+      this.linkList = newLinkList
+      return updated
     },
-
-    /**
-     * 全てのstateを初期化
-     */
-    clearState() {
-      this.referenceCentenceId = 0
-      this.sentenceWordGroupList = []
-      this.draggableWordGroupList = []
-      this.referenceSentenceList = []
-      this.sentencesList = []
-      this.referenceWordGroupList = []
-      this.answer = ''
-    },
-
-    /**
-     * 問題・参照文データを全て取得しstateにセット
-     */
-    async fetchAll() {
-      this.clearState()
-      await this.fetchExerciseJson()
-      await this.fetchReferenceSentences()
-    },
-
-    /**
-     * 問題データ(exercise.json)を取得しstateにセット
-     * 復習用(isReview)の場合は何もしない
-     */
-    async fetchExerciseJson() {
-      this.sentenceWordGroupList = []
-      this.draggableWordGroupList = []
-      if (this.isCurrentReview()) return
-      const path = this.getCurrentPath()
-      const res = await fetch(`${path}/exercise.json`)
-      const data = await res.json()
-      this.referenceCentenceId = data.referenceCentenceId
-      this.sentenceWordGroupList = data.sentenceWordGroupList
-      this.draggableWordGroupList = data.draggableWordGroupList
-      this.answer = data.answer ?? ''
-    },
-
-    /**
-     * 参照文データ(reference-sentences.json)を取得しstateにセット
-     */
-    async fetchReferenceSentences() {
-      this.referenceSentenceList = []
-      this.sentencesList = []
-      this.referenceWordGroupList = []
-      const path = this.getCurrentPath()
-      const res = await fetch(`${path}/reference-sentences.json`)
-      const data = await res.json()
-      this.referenceSentenceList = data
-      this.sentencesList = data
-      // referenceCentenceIdと一致するものを抽出
-      const ref = data.find((item: Sentence) => item.sentenceId === this.referenceCentenceId)
-      this.referenceWordGroupList = ref ? ref.sentenceWordGroupList : []
-    },
-
-    /**
-     * 問題を次に進める
-     */
-    async nextQuestion() {
-      this.currentIndex = (this.currentIndex + 1) % this.questionList.length
-      await this.fetchAll()
-    },
-
-    /**
-     * 最初の問題にリセット
-     */
-    async resetQuestions() {
-      this.currentIndex = 0
-      await this.fetchAll()
-    },
-
     /**
      * sentenceWordGroupListをセット
      */
@@ -123,9 +86,8 @@ export const useExerciseStore = defineStore('exercise', {
     setDraggableWordGroupList(list: WordGroup[]) {
       this.draggableWordGroupList = list
     },
-
     /**
-     * DropZoneなどからidと新items配列を受けて該当item.itemsを更新
+     * DropZoneから呼ばれる: sentenceWordGroupListまたはdraggableWordGroupListを更新（入れ子構造対応）
      */
     updateItemsById(id: number, newItems: WordGroup[]) {
       for (const group of this.sentenceWordGroupList) {
@@ -140,6 +102,106 @@ export const useExerciseStore = defineStore('exercise', {
           }
         }
       }
+    },
+    /**
+     * sample3の全データを初期化・ロード
+     */
+    async initializeSample3() {
+      // graph-structure.json
+      const graphRes = await fetch('/json/questions/sample3/graph-structure.json')
+      const graphData = await graphRes.json()
+      this.nodeList = graphData.nodeList
+      this.linkList = graphData.linkList
+      // translation-model.json
+      const modelRes = await fetch('/json/questions/sample3/translation-model.json')
+      this.translationModel = await modelRes.json()
+      // 最初のノード・リンク
+      this.currentTranslationId = 0
+      this.currentNodeId = 0
+      this.currentLinkId = null
+      this.completedLinkIds = []
+      await this.loadExerciseData(0)
+    },
+
+    /**
+     * translationIdに対応する演習データをロード
+     */
+    async loadExerciseData(translationId: number) {
+      // exercise.json
+      const exRes = await fetch(`/json/questions/sample3/${translationId}/exercise.json`)
+      const exData = await exRes.json()
+      this.sentenceWordGroupList = exData.sentenceWordGroupList
+      this.draggableWordGroupList = exData.draggableWordGroupList
+      this.answerList = exData.answerList ?? []
+      this.currentTranslationId = translationId
+    },
+
+    /**
+     * 指定リンクを進行（正解時に呼ぶ）
+     */
+    completeLink(linkId: number) {
+      const link = this.linkList.find(l => l.linkId === linkId)
+      if (link && !link.isConnected) {
+        link.isConnected = true
+        this.completedLinkIds.push(linkId)
+      }
+    },
+
+    /**
+     * 次に進行可能なリンク一覧を返す
+     */
+    getAvailableLinks(): GraphLink[] {
+      // sourceNodeIdが全てisConnectedなリンクのみ進行可能
+      // ただし最初のリンクはisConnected不要
+      return this.linkList.filter(link => {
+        if (link.isConnected) return false
+        // sourceNodeIdから来るリンクがなければ最初のリンク
+        const incoming = this.linkList.filter(l => l.targetNodeId === link.sourceNodeId)
+        if (incoming.length === 0) return true
+        // すべてのincomingがisConnectedなら進行可能
+        return incoming.every(l => l.isConnected)
+      })
+    },
+
+    /**
+     * 「作成する」ボタンで呼ぶ: 指定リンクのtargetNodeIdの演習データをロード
+     */
+    /**
+     * 「作成する」ボタンで呼ぶ: 指定リンクのtargetNodeIdの演習データをロード
+     * @param linkId 対象リンクID
+     * @param parentTranslationId 親ノードのtranslationId（未使用ならnull可）
+     */
+    /**
+     * 「作成する」ボタンで呼ぶ: 指定リンクのtargetNodeIdの演習データをロード
+     * @param linkId 対象リンクID
+     * @param parentTranslationId 親ノードのtranslationId（nullの場合は何もしない）
+     */
+    async startExerciseByLink(linkId: number, parentTranslationId: number | null = null) {
+      const link = this.linkList.find(l => l.linkId === linkId)
+      if (!link) return
+      this.currentLinkId = linkId
+      this.currentNodeId = link.targetNodeId
+      // 親ノードのtranslationIdで演習データと参照文データをロード
+      if (parentTranslationId !== null) {
+        await this.loadExerciseData(parentTranslationId)
+        await this.loadReferenceSentences(parentTranslationId)
+      } else {
+        // fallback: targetNodeのtranslationIdで従来通りロード
+        const targetNode = this.nodeList.find(n => n.nodeId === link.targetNodeId)
+        if (targetNode) {
+          await this.loadExerciseData(targetNode.translationId ?? 0)
+          await this.loadReferenceSentences(targetNode.translationId ?? 0)
+        }
+      }
+    },
+
+    /**
+     * reference-sentences.jsonをロードしstoreに保存
+     */
+    async loadReferenceSentences(translationId: number) {
+      // 例: /json/questions/sample3/{translationId}/reference-sentences.json
+      const refRes = await fetch(`/json/questions/sample3/${translationId}/reference-sentences.json`)
+      this.referenceSentences = await refRes.json()
     },
   },
 })

@@ -12,11 +12,6 @@
                         {
                             "id": 0,
                             "isDropZone": true
-                        },
-                        {
-                            "id": 2,
-                            "isDropZone": false,
-                            "wordText": "は"
                         }
                     ]
                 },
@@ -35,13 +30,8 @@
                     "contentType": "wordGroupCard",
                     "wordList": [
                         {
-                            "id": 3,
+                            "id": 1,
                             "isDropZone": true
-                        },
-                        {
-                            "id": 5,
-                            "isDropZone": false,
-                            "wordText": "を"
                         }
                     ]
                 },
@@ -60,13 +50,8 @@
                     "contentType": "wordGroupCard",
                     "wordList": [
                         {
-                            "id": 6,
+                            "id": 2,
                             "isDropZone": true
-                        },
-                        {
-                            "id": 8,
-                            "isDropZone": false,
-                            "wordText": "ます"
                         }
                     ]
                 },
@@ -87,9 +72,14 @@
                     "contentType": "wordGroupCard",
                     "wordList": [
                         {
-                            "id": 1,
+                            "id": 3,
                             "isDropZone": false,
-                            "wordText": "太郎"
+                            "wordText": "ポール"
+                        },
+                        {
+                            "id": 4,
+                            "isDropZone": false,
+                            "wordText": "は"
                         }
                     ]
                 },
@@ -108,9 +98,14 @@
                     "contentType": "wordGroupCard",
                     "wordList": [
                         {
-                            "id": 4,
+                            "id": 5,
                             "isDropZone": false,
-                            "wordText": "昼食"
+                            "wordText": "食べ"
+                        },
+                        {
+                            "id": 6,
+                            "isDropZone": false,
+                            "wordText": "ます"
                         }
                     ]
                 },
@@ -131,7 +126,12 @@
                         {
                             "id": 7,
                             "isDropZone": false,
-                            "wordText": "食べ"
+                            "wordText": "昼食"
+                        },
+                        {
+                            "id": 8,
+                            "isDropZone": false,
+                            "wordText": "を"
                         }
                     ]
                 },
@@ -141,6 +141,8 @@
             }
         }
     ],
-    "answer": "太郎は昼食を食べます",
-    "referenceCentenceId": 0
+    "answerList": [
+        "昼食をポールは食べます"
+    ],
+    "referenceCentenceId": 5
 }

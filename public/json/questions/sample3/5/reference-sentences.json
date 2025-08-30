@@ -14,7 +14,49 @@
                             {
                                 "id": 0,
                                 "isDropZone": false,
-                                "wordText": "太郎は昼食を食べます"
+                                "wordText": "Paul"
+                            }
+                        ]
+                    },
+                    "lower": {
+                        "contentType": "none"
+                    }
+                }
+            },
+            {
+                "wordGroupId": 1,
+                "contents": {
+                    "upper": {
+                        "contentType": "none"
+                    },
+                    "middle": {
+                        "contentType": "wordGroupCard",
+                        "wordList": [
+                            {
+                                "id": 0,
+                                "isDropZone": false,
+                                "wordText": "eats"
+                            }
+                        ]
+                    },
+                    "lower": {
+                        "contentType": "none"
+                    }
+                }
+            },
+            {
+                "wordGroupId": 2,
+                "contents": {
+                    "upper": {
+                        "contentType": "none"
+                    },
+                    "middle": {
+                        "contentType": "wordGroupCard",
+                        "wordList": [
+                            {
+                                "id": 0,
+                                "isDropZone": false,
+                                "wordText": "lunch"
                             }
                         ]
                     },
@@ -40,17 +82,17 @@
                             {
                                 "id": 0,
                                 "isDropZone": false,
-                                "wordText": "太郎"
-                            },
-                            {
-                                "id": 1,
-                                "isDropZone": false,
-                                "wordText": "は"
+                                "wordText": "Paul"
                             }
                         ]
                     },
                     "lower": {
-                        "contentType": "none"
+                        "contentType": "label",
+                        "labelSettings": {
+                            "labelText": "S: 誰/何が・は",
+                            "isLineUpper": true,
+                            "isLineLower": false
+                        }
                     }
                 }
             },
@@ -66,17 +108,17 @@
                             {
                                 "id": 0,
                                 "isDropZone": false,
-                                "wordText": "昼食"
-                            },
-                            {
-                                "id": 1,
-                                "isDropZone": false,
-                                "wordText": "を"
+                                "wordText": "eats"
                             }
                         ]
                     },
                     "lower": {
-                        "contentType": "none"
+                        "contentType": "label",
+                        "labelSettings": {
+                            "labelText": "V: どうする",
+                            "isLineUpper": true,
+                            "isLineLower": false
+                        }
                     }
                 }
             },
@@ -92,17 +134,17 @@
                             {
                                 "id": 0,
                                 "isDropZone": false,
-                                "wordText": "食べ"
-                            },
-                            {
-                                "id": 1,
-                                "isDropZone": false,
-                                "wordText": "ます"
+                                "wordText": "lunch"
                             }
                         ]
                     },
                     "lower": {
-                        "contentType": "none"
+                        "contentType": "label",
+                        "labelSettings": {
+                            "labelText": "DO: 誰/何を",
+                            "isLineUpper": true,
+                            "isLineLower": false
+                        }
                     }
                 }
             }
@@ -123,7 +165,7 @@
                             {
                                 "id": 0,
                                 "isDropZone": false,
-                                "wordText": "Taro"
+                                "wordText": "Paul"
                             },
                             {
                                 "id": 1,
@@ -133,38 +175,17 @@
                         ]
                     },
                     "lower": {
-                        "contentType": "none"
+                        "contentType": "label",
+                        "labelSettings": {
+                            "labelText": "S: 誰/何が・は",
+                            "isLineUpper": true,
+                            "isLineLower": false
+                        }
                     }
                 }
             },
             {
                 "wordGroupId": 1,
-                "contents": {
-                    "upper": {
-                        "contentType": "none"
-                    },
-                    "middle": {
-                        "contentType": "wordGroupCard",
-                        "wordList": [
-                            {
-                                "id": 0,
-                                "isDropZone": false,
-                                "wordText": "lunch"
-                            },
-                            {
-                                "id": 1,
-                                "isDropZone": false,
-                                "wordText": "を"
-                            }
-                        ]
-                    },
-                    "lower": {
-                        "contentType": "none"
-                    }
-                }
-            },
-            {
-                "wordGroupId": 2,
                 "contents": {
                     "upper": {
                         "contentType": "none"
@@ -185,7 +206,43 @@
                         ]
                     },
                     "lower": {
+                        "contentType": "label",
+                        "labelSettings": {
+                            "labelText": "V: どうする",
+                            "isLineUpper": true,
+                            "isLineLower": false
+                        }
+                    }
+                }
+            },
+            {
+                "wordGroupId": 2,
+                "contents": {
+                    "upper": {
                         "contentType": "none"
+                    },
+                    "middle": {
+                        "contentType": "wordGroupCard",
+                        "wordList": [
+                            {
+                                "id": 0,
+                                "isDropZone": false,
+                                "wordText": "lunch"
+                            },
+                            {
+                                "id": 1,
+                                "isDropZone": false,
+                                "wordText": "を"
+                            }
+                        ]
+                    },
+                    "lower": {
+                        "contentType": "label",
+                        "labelSettings": {
+                            "labelText": "DO: 誰/何を",
+                            "isLineUpper": true,
+                            "isLineLower": false
+                        }
                     }
                 }
             }
@@ -206,7 +263,38 @@
                             {
                                 "id": 0,
                                 "isDropZone": false,
-                                "wordText": "Taro"
+                                "wordText": "lunch"
+                            },
+                            {
+                                "id": 1,
+                                "isDropZone": false,
+                                "wordText": "を"
+                            }
+                        ]
+                    },
+                    "lower": {
+                        "contentType": "label",
+                        "labelSettings": {
+                            "labelText": "DO: 誰/何を",
+                            "isLineUpper": true,
+                            "isLineLower": false
+                        }
+                    }
+                }
+            },
+            {
+                "wordGroupId": 1,
+                "contents": {
+                    "upper": {
+                        "contentType": "none"
+                    },
+                    "middle": {
+                        "contentType": "wordGroupCard",
+                        "wordList": [
+                            {
+                                "id": 0,
+                                "isDropZone": false,
+                                "wordText": "Paul"
                             },
                             {
                                 "id": 1,
@@ -226,7 +314,7 @@
                 }
             },
             {
-                "wordGroupId": 1,
+                "wordGroupId": 2,
                 "contents": {
                     "upper": {
                         "contentType": "none"
@@ -243,37 +331,6 @@
                                 "id": 1,
                                 "isDropZone": false,
                                 "wordText": "ます"
-                            }
-                        ]
-                    },
-                    "lower": {
-                        "contentType": "label",
-                        "labelSettings": {
-                            "labelText": "DO: 誰/何・を",
-                            "isLineUpper": true,
-                            "isLineLower": false
-                        }
-                    }
-                }
-            },
-            {
-                "wordGroupId": 2,
-                "contents": {
-                    "upper": {
-                        "contentType": "none"
-                    },
-                    "middle": {
-                        "contentType": "wordGroupCard",
-                        "wordList": [
-                            {
-                                "id": 0,
-                                "isDropZone": false,
-                                "wordText": "lunch"
-                            },
-                            {
-                                "id": 1,
-                                "isDropZone": false,
-                                "wordText": "を"
                             }
                         ]
                     },
@@ -290,18 +347,13 @@
         ]
     },
     {
-        "sentenceId": 4,
+        "sentenceId": 5,
         "sentenceWordGroupList": [
             {
                 "wordGroupId": 0,
                 "contents": {
                     "upper": {
-                        "contentType": "label",
-                        "labelSettings": {
-                            "labelText": "S: 誰/何が・は",
-                            "isLineUpper": false,
-                            "isLineLower": true
-                        }
+                        "contentType": "none"
                     },
                     "middle": {
                         "contentType": "wordGroupCard",
@@ -309,7 +361,33 @@
                             {
                                 "id": 0,
                                 "isDropZone": false,
-                                "wordText": "Taro"
+                                "wordText": "lunch"
+                            },
+                            {
+                                "id": 1,
+                                "isDropZone": false,
+                                "wordText": "を"
+                            }
+                        ]
+                    },
+                    "lower": {
+                        "contentType": "none"
+                    }
+                }
+            },
+            {
+                "wordGroupId": 1,
+                "contents": {
+                    "upper": {
+                        "contentType": "none"
+                    },
+                    "middle": {
+                        "contentType": "wordGroupCard",
+                        "wordList": [
+                            {
+                                "id": 0,
+                                "isDropZone": false,
+                                "wordText": "Paul"
                             },
                             {
                                 "id": 1,
@@ -324,15 +402,10 @@
                 }
             },
             {
-                "wordGroupId": 1,
+                "wordGroupId": 2,
                 "contents": {
                     "upper": {
-                        "contentType": "label",
-                        "labelSettings": {
-                            "labelText": "V: どうする",
-                            "isLineUpper": false,
-                            "isLineLower": true
-                        }
+                        "contentType": "none"
                     },
                     "middle": {
                         "contentType": "wordGroupCard",
@@ -346,37 +419,6 @@
                                 "id": 1,
                                 "isDropZone": false,
                                 "wordText": "ます"
-                            }
-                        ]
-                    },
-                    "lower": {
-                        "contentType": "none"
-                    }
-                }
-            },
-            {
-                "wordGroupId": 2,
-                "contents": {
-                    "upper": {
-                        "contentType": "label",
-                        "labelSettings": {
-                            "labelText": "DO: 誰/何・を",
-                            "isLineUpper": false,
-                            "isLineLower": true
-                        }
-                    },
-                    "middle": {
-                        "contentType": "wordGroupCard",
-                        "wordList": [
-                            {
-                                "id": 0,
-                                "isDropZone": false,
-                                "wordText": "lunch"
-                            },
-                            {
-                                "id": 1,
-                                "isDropZone": false,
-                                "wordText": "を"
                             }
                         ]
                     },

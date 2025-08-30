@@ -11,17 +11,22 @@
                     "wordList": [
                         {
                             "id": 0,
-                            "isDropZone": true
+                            "wordText": "Paul",
+                            "isDropZone": false
                         },
                         {
-                            "id": 2,
-                            "isDropZone": false,
-                            "wordText": "は"
+                            "id": 1,
+                            "isDropZone": true
                         }
                     ]
                 },
                 "lower": {
-                    "contentType": "none"
+                    "contentType": "label",
+                    "labelSettings": {
+                        "labelText": "S: 誰/何が・は",
+                        "isLineUpper": true,
+                        "isLineLower": false
+                    }
                 }
             }
         },
@@ -35,18 +40,23 @@
                     "contentType": "wordGroupCard",
                     "wordList": [
                         {
-                            "id": 3,
-                            "isDropZone": true
+                            "id": 2,
+                            "wordText": "eats",
+                            "isDropZone": false
                         },
                         {
-                            "id": 5,
-                            "isDropZone": false,
-                            "wordText": "に"
+                            "id": 3,
+                            "isDropZone": true
                         }
                     ]
                 },
                 "lower": {
-                    "contentType": "none"
+                    "contentType": "label",
+                    "labelSettings": {
+                        "labelText": "V: どうする",
+                        "isLineUpper": true,
+                        "isLineLower": false
+                    }
                 }
             }
         },
@@ -60,21 +70,28 @@
                     "contentType": "wordGroupCard",
                     "wordList": [
                         {
-                            "id": 6,
-                            "isDropZone": true
+                            "id": 4,
+                            "wordText": "lunch",
+                            "isDropZone": false
                         },
                         {
-                            "id": 8,
-                            "isDropZone": false,
-                            "wordText": "を"
+                            "id": 5,
+                            "isDropZone": true
                         }
                     ]
                 },
                 "lower": {
-                    "contentType": "none"
+                    "contentType": "label",
+                    "labelSettings": {
+                        "labelText": "DO: 誰/何を",
+                        "isLineUpper": true,
+                        "isLineLower": false
+                    }
                 }
             }
-        },
+        }
+    ],
+    "draggableWordGroupList": [
         {
             "wordGroupId": 3,
             "contents": {
@@ -85,13 +102,9 @@
                     "contentType": "wordGroupCard",
                     "wordList": [
                         {
-                            "id": 9,
-                            "isDropZone": true
-                        },
-                        {
-                            "id": 11,
+                            "id": 6,
                             "isDropZone": false,
-                            "wordText": "ます"
+                            "wordText": "は"
                         }
                     ]
                 },
@@ -99,9 +112,7 @@
                     "contentType": "none"
                 }
             }
-        }
-    ],
-    "draggableWordGroupList": [
+        },
         {
             "wordGroupId": 4,
             "contents": {
@@ -112,9 +123,9 @@
                     "contentType": "wordGroupCard",
                     "wordList": [
                         {
-                            "id": 1,
+                            "id": 7,
                             "isDropZone": false,
-                            "wordText": "太郎"
+                            "wordText": "ます"
                         }
                     ]
                 },
@@ -133,51 +144,9 @@
                     "contentType": "wordGroupCard",
                     "wordList": [
                         {
-                            "id": 4,
+                            "id": 8,
                             "isDropZone": false,
-                            "wordText": "ポチ"
-                        }
-                    ]
-                },
-                "lower": {
-                    "contentType": "none"
-                }
-            }
-        },
-        {
-            "wordGroupId": 6,
-            "contents": {
-                "upper": {
-                    "contentType": "none"
-                },
-                "middle": {
-                    "contentType": "wordGroupCard",
-                    "wordList": [
-                        {
-                            "id": 7,
-                            "isDropZone": false,
-                            "wordText": "肉"
-                        }
-                    ]
-                },
-                "lower": {
-                    "contentType": "none"
-                }
-            }
-        },
-        {
-            "wordGroupId": 7,
-            "contents": {
-                "upper": {
-                    "contentType": "none"
-                },
-                "middle": {
-                    "contentType": "wordGroupCard",
-                    "wordList": [
-                        {
-                            "id": 10,
-                            "isDropZone": false,
-                            "wordText": "与え"
+                            "wordText": "を"
                         }
                     ]
                 },
@@ -187,6 +156,8 @@
             }
         }
     ],
-    "answer": "太郎はポチに肉を与えます",
-    "referenceCentenceId": 0
+    "answerList": [
+        "Paulはeatsますlunchを"
+    ],
+    "referenceCentenceId": 1
 }

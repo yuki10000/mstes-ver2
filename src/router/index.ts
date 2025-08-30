@@ -1,7 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { auth } from '@/firebase'
-import { onAuthStateChanged } from 'firebase/auth'
-import type { User } from 'firebase/auth'
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,16 +17,10 @@ const router = createRouter({
       meta: { title: 'ログイン' },
     },
     {
-      path: '/exercise/:roomId',
+      path: '/exercise',
       name: 'Exercise',
       component: () => import('../pages/ExerciseView.vue'),
       meta: { title: '演習' },
-    },
-    {
-      path: '/demo/:roomId',
-      name: 'Demo',
-      component: () => import('../pages/ExerciseView.vue'),
-      meta: { title: 'デモ' },
     },
     {
       path: '/:pathMatch(.*)*',
@@ -39,38 +31,14 @@ const router = createRouter({
   ],
 })
 
-let isAuthChecked = false
-let authUser: User | null = null
-const waitForAuth = () => {
-  return new Promise((resolve) => {
-    if (isAuthChecked) {
-      resolve(authUser)
-    } else {
-      const unsubscribe = onAuthStateChanged(auth, (user) => {
-        isAuthChecked = true
-        authUser = user
-        unsubscribe()
-        resolve(user)
-      })
-    }
-  })
-}
 
-// ページタイトルを動的に変更 & 認証ガード
-router.beforeEach(async (to, from, next) => {
+// ページタイトルのみ動的に変更
+router.beforeEach((to, from, next) => {
   const baseTitle = '段階的翻訳演習'
   if (to.meta && to.meta.title) {
     document.title = `${baseTitle} | ${to.meta.title}`
   } else {
     document.title = baseTitle
-  }
-
-  // /exercise/:roomId のみ認証必須
-  const isExercisePage = to.name === 'Exercise'
-  const user = await waitForAuth()
-
-  if (isExercisePage && !user) {
-    return next({ name: 'Login' })
   }
   next()
 })
