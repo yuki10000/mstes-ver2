@@ -6,7 +6,6 @@
   </v-container>
 </template>
 
-
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useExerciseStore } from '@/stores/exercise'
@@ -44,6 +43,4 @@ onMounted(async () => {
 })
 </script>
 
-
-<style scoped>
-</style>
+<style scoped></style>

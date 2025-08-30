@@ -1,4 +1,3 @@
-
 <template>
   <v-dialog :model-value="modelValue" @update:model-value="onUpdateModelValue" max-width="400">
     <v-card>

@@ -40,8 +40,8 @@ export function useAnswerString() {
 
   const isCorrect = computed(() =>
     Array.isArray(exerciseStore.answerList) && exerciseStore.answerList.length > 0
-      ? exerciseStore.answerList.some(ans => ans === answerString.value)
-      : false
+      ? exerciseStore.answerList.some((ans) => ans === answerString.value)
+      : false,
   )
 
   return { answerString, isCorrect }

@@ -77,7 +77,9 @@ export const useExerciseStore = defineStore('exercise', {
      * @param translationId 対象のtranslationId
      */
     async loadReferenceSentences(translationId: number) {
-      const refRes = await fetch(`/json/questions/sample3/${translationId}/reference-sentences.json`)
+      const refRes = await fetch(
+        `/json/questions/sample3/${translationId}/reference-sentences.json`,
+      )
       this.referenceSentences = await refRes.json()
     },
 
@@ -88,7 +90,7 @@ export const useExerciseStore = defineStore('exercise', {
      * @param parentTranslationId 親ノードのtranslationId（未使用ならnull可）
      */
     async startExerciseByLink(linkId: number, parentTranslationId: number | null = null) {
-      const link = this.linkList.find(l => l.linkId === linkId)
+      const link = this.linkList.find((l) => l.linkId === linkId)
       if (!link) return
       this.currentLinkId = linkId
       this.currentNodeId = link.targetNodeId
@@ -96,7 +98,7 @@ export const useExerciseStore = defineStore('exercise', {
       if (parentTranslationId !== null) {
         nextTranslationId = parentTranslationId
       } else {
-        const targetNode = this.nodeList.find(n => n.nodeId === link.targetNodeId)
+        const targetNode = this.nodeList.find((n) => n.nodeId === link.targetNodeId)
         nextTranslationId = targetNode?.translationId ?? null
       }
       if (nextTranslationId !== null && this.currentTranslationId === nextTranslationId) {
@@ -116,16 +118,16 @@ export const useExerciseStore = defineStore('exercise', {
      */
     completeLinksByAnswer(answer: string) {
       let updated = false
-      const canOpen = this.linkList.filter(link => {
+      const canOpen = this.linkList.filter((link) => {
         if (link.isConnected) return false
-        const incoming = this.linkList.filter(l => l.targetNodeId === link.sourceNodeId)
+        const incoming = this.linkList.filter((l) => l.targetNodeId === link.sourceNodeId)
         if (incoming.length === 0) return true
-        return incoming.every(l => l.isConnected)
+        return incoming.every((l) => l.isConnected)
       })
-      const newLinkList = this.linkList.map(link => {
+      const newLinkList = this.linkList.map((link) => {
         if (
           !link.isConnected &&
-          canOpen.some(l => l.linkId === link.linkId) &&
+          canOpen.some((l) => l.linkId === link.linkId) &&
           Array.isArray(link.answer) &&
           link.answer.includes(answer)
         ) {
@@ -144,7 +146,7 @@ export const useExerciseStore = defineStore('exercise', {
      * @param linkId 対象リンクID
      */
     completeLink(linkId: number) {
-      const link = this.linkList.find(l => l.linkId === linkId)
+      const link = this.linkList.find((l) => l.linkId === linkId)
       if (link && !link.isConnected) {
         link.isConnected = true
         this.completedLinkIds.push(linkId)
@@ -157,11 +159,11 @@ export const useExerciseStore = defineStore('exercise', {
      * @returns 進行可能なGraphLink配列
      */
     getAvailableLinks(): GraphLink[] {
-      return this.linkList.filter(link => {
+      return this.linkList.filter((link) => {
         if (link.isConnected) return false
-        const incoming = this.linkList.filter(l => l.targetNodeId === link.sourceNodeId)
+        const incoming = this.linkList.filter((l) => l.targetNodeId === link.sourceNodeId)
         if (incoming.length === 0) return true
-        return incoming.every(l => l.isConnected)
+        return incoming.every((l) => l.isConnected)
       })
     },
 
