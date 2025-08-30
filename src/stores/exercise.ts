@@ -1,131 +1,178 @@
 import { defineStore } from 'pinia'
 import type { WordGroup, Sentence } from '@/types/exercise'
 
-// questionListの型
-export interface QuestionItem {
-  questionId: string
-  phaseId: string
-  isReview?: boolean
+export interface GraphNode {
+  nodeId: number
+  sentenceId: number
+  translationId: number | null
+}
+export interface GraphLink {
+  linkId: number
+  sourceNodeId: number
+  targetNodeId: number
+  isConnected: boolean
+  answer: string[]
 }
 
 export const useExerciseStore = defineStore('exercise', {
   state: () => ({
-    referenceCentenceId: 0 as number,
+    // グラフ構造
+    nodeList: [] as GraphNode[],
+    linkList: [] as GraphLink[],
+    // 翻訳モデル
+    translationModel: [] as Sentence[],
+    // 現在の進行状況
+    currentTranslationId: 0 as number,
+    currentNodeId: 0 as number,
+    currentLinkId: null as number | null,
+    // 現在の演習データ
     sentenceWordGroupList: [] as WordGroup[],
     draggableWordGroupList: [] as WordGroup[],
-    referenceSentenceList: [] as Sentence[],
-    sentencesList: [] as Sentence[],
-    referenceWordGroupList: [] as WordGroup[],
-    answer: '' as string,
-    // 問題群のリスト
-    questionList: [] as QuestionItem[],
-    currentIndex: 0 as number, // 現在のインデックス
+    answerList: [] as string[],
+    mainMessage: '' as string,
+    // 進行履歴
+    completedLinkIds: [] as number[],
+    // 参照文（未使用）
   }),
   actions: {
     /**
-     * 現在の問題のパスを取得
+     * グラフのノード・リンク・翻訳モデルなど、sample3の全データを初期化・ロードする関数。
+     * 最初のノード・リンクも初期化し、最初の演習データもロードする。
      */
-    getCurrentPath() {
-      const { questionId, phaseId } = this.questionList[this.currentIndex]
-      return `/json/questions/${questionId}/${phaseId}`
+    async initializeSample3() {
+      const graphRes = await fetch('/json/questions/sample3/graph-structure.json')
+      const graphData = await graphRes.json()
+      this.nodeList = graphData.nodeList
+      this.linkList = graphData.linkList
+      const modelRes = await fetch('/json/questions/sample3/translation-model.json')
+      this.translationModel = await modelRes.json()
+      this.currentTranslationId = 0
+      this.currentNodeId = 0
+      this.currentLinkId = null
+      this.completedLinkIds = []
+      await this.loadExerciseData(0)
     },
 
     /**
-     * 現在の問題が復習用かどうかを判定
+     * translationIdに対応する演習データ（exercise.json）をロードし、
+     * sentenceWordGroupList, draggableWordGroupList, answerList, currentTranslationIdを更新する関数。
+     * @param translationId 対象のtranslationId
      */
-    isCurrentReview() {
-      const q = this.questionList[this.currentIndex]
-      return q && q.isReview === true
+    async loadExerciseData(translationId: number) {
+      const exRes = await fetch(`/json/questions/sample3/${translationId}/exercise.json`)
+      const exData = await exRes.json()
+      this.sentenceWordGroupList = exData.sentenceWordGroupList
+      this.draggableWordGroupList = exData.draggableWordGroupList
+      this.answerList = exData.answerList ?? []
+      this.mainMessage = exData.mainMessage ?? ''
+      this.currentTranslationId = translationId
+    },
+
+
+
+    /**
+     * 「作成する」ボタンで呼ばれる。指定リンクのtargetNodeIdの演習データをロードする関数。
+     * すでに同じtranslationIdならstateを保持し、異なる場合のみリセット・ロードする。
+     * @param linkId 対象リンクID
+     * @param parentTranslationId 親ノードのtranslationId（未使用ならnull可）
+     */
+    async startExerciseByLink(linkId: number, parentTranslationId: number | null = null) {
+      const link = this.linkList.find((l) => l.linkId === linkId)
+      if (!link) return
+      this.currentLinkId = linkId
+      this.currentNodeId = link.targetNodeId
+      let nextTranslationId: number | null = null
+      if (parentTranslationId !== null) {
+        nextTranslationId = parentTranslationId
+      } else {
+        const targetNode = this.nodeList.find((n) => n.nodeId === link.targetNodeId)
+        nextTranslationId = targetNode?.translationId ?? null
+      }
+      if (nextTranslationId !== null && this.currentTranslationId === nextTranslationId) {
+        return
+      }
+      if (nextTranslationId !== null) {
+        await this.loadExerciseData(nextTranslationId)
+      }
     },
 
     /**
-     * 全てのstateを初期化
+     * 回答文字列と一致する全てのリンクを開放し、グラフを更新する関数。
+     * 正解時、親リンクがisConnectedなものだけを開放（1距離のみ）
+     * @param answer 回答文字列
+     * @returns updated: 何かリンクが開放された場合true
      */
-    clearState() {
-      this.referenceCentenceId = 0
-      this.sentenceWordGroupList = []
-      this.draggableWordGroupList = []
-      this.referenceSentenceList = []
-      this.sentencesList = []
-      this.referenceWordGroupList = []
-      this.answer = ''
+    completeLinksByAnswer(answer: string) {
+      let updated = false
+      const canOpen = this.linkList.filter((link) => {
+        if (link.isConnected) return false
+        const incoming = this.linkList.filter((l) => l.targetNodeId === link.sourceNodeId)
+        if (incoming.length === 0) return true
+        return incoming.every((l) => l.isConnected)
+      })
+      const newLinkList = this.linkList.map((link) => {
+        if (
+          !link.isConnected &&
+          canOpen.some((l) => l.linkId === link.linkId) &&
+          Array.isArray(link.answer) &&
+          link.answer.includes(answer)
+        ) {
+          updated = true
+          this.completedLinkIds.push(link.linkId)
+          return { ...link, isConnected: true }
+        }
+        return link
+      })
+      this.linkList = newLinkList
+      return updated
     },
 
     /**
-     * 問題・参照文データを全て取得しstateにセット
+     * 指定リンクを進行（正解時に呼ぶ）。linkIdのisConnectedをtrueにし、completedLinkIdsに追加する関数。
+     * @param linkId 対象リンクID
      */
-    async fetchAll() {
-      this.clearState()
-      await this.fetchExerciseJson()
-      await this.fetchReferenceSentences()
+    completeLink(linkId: number) {
+      const link = this.linkList.find((l) => l.linkId === linkId)
+      if (link && !link.isConnected) {
+        link.isConnected = true
+        this.completedLinkIds.push(linkId)
+      }
     },
 
     /**
-     * 問題データ(exercise.json)を取得しstateにセット
-     * 復習用(isReview)の場合は何もしない
+     * 次に進行可能なリンク一覧を返す関数。
+     * sourceNodeIdが全てisConnectedなリンクのみ進行可能（最初のリンクはisConnected不要）
+     * @returns 進行可能なGraphLink配列
      */
-    async fetchExerciseJson() {
-      this.sentenceWordGroupList = []
-      this.draggableWordGroupList = []
-      if (this.isCurrentReview()) return
-      const path = this.getCurrentPath()
-      const res = await fetch(`${path}/exercise.json`)
-      const data = await res.json()
-      this.referenceCentenceId = data.referenceCentenceId
-      this.sentenceWordGroupList = data.sentenceWordGroupList
-      this.draggableWordGroupList = data.draggableWordGroupList
-      this.answer = data.answer ?? ''
+    getAvailableLinks(): GraphLink[] {
+      return this.linkList.filter((link) => {
+        if (link.isConnected) return false
+        const incoming = this.linkList.filter((l) => l.targetNodeId === link.sourceNodeId)
+        if (incoming.length === 0) return true
+        return incoming.every((l) => l.isConnected)
+      })
     },
 
     /**
-     * 参照文データ(reference-sentences.json)を取得しstateにセット
-     */
-    async fetchReferenceSentences() {
-      this.referenceSentenceList = []
-      this.sentencesList = []
-      this.referenceWordGroupList = []
-      const path = this.getCurrentPath()
-      const res = await fetch(`${path}/reference-sentences.json`)
-      const data = await res.json()
-      this.referenceSentenceList = data
-      this.sentencesList = data
-      // referenceCentenceIdと一致するものを抽出
-      const ref = data.find((item: Sentence) => item.sentenceId === this.referenceCentenceId)
-      this.referenceWordGroupList = ref ? ref.sentenceWordGroupList : []
-    },
-
-    /**
-     * 問題を次に進める
-     */
-    async nextQuestion() {
-      this.currentIndex = (this.currentIndex + 1) % this.questionList.length
-      await this.fetchAll()
-    },
-
-    /**
-     * 最初の問題にリセット
-     */
-    async resetQuestions() {
-      this.currentIndex = 0
-      await this.fetchAll()
-    },
-
-    /**
-     * sentenceWordGroupListをセット
+     * sentenceWordGroupListをセットする関数。
+     * @param list 新しいWordGroup配列
      */
     setSentenceWordGroupList(list: WordGroup[]) {
       this.sentenceWordGroupList = list
     },
 
     /**
-     * draggableWordGroupListをセット
+     * draggableWordGroupListをセットする関数。
+     * @param list 新しいWordGroup配列
      */
     setDraggableWordGroupList(list: WordGroup[]) {
       this.draggableWordGroupList = list
     },
 
     /**
-     * DropZoneなどからidと新items配列を受けて該当item.itemsを更新
+     * DropZoneから呼ばれる: sentenceWordGroupListまたはdraggableWordGroupListを更新（入れ子構造対応）する関数。
+     * @param id 対象WordGroupのid
+     * @param newItems 新しいWordGroup配列
      */
     updateItemsById(id: number, newItems: WordGroup[]) {
       for (const group of this.sentenceWordGroupList) {

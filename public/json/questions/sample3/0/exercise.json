@@ -4,19 +4,21 @@
             "wordGroupId": 0,
             "contents": {
                 "upper": {
-                    "contentType": "none"
+                    "contentType": "wordGroupCard",
+                    "wordList": [
+                        {
+                            "id": 0,
+                            "isDropZone": false,
+                            "wordText": "Paul"
+                        }
+                    ]
                 },
                 "middle": {
                     "contentType": "wordGroupCard",
                     "wordList": [
                         {
-                            "id": 0,
+                            "id": 1,
                             "isDropZone": true
-                        },
-                        {
-                            "id": 2,
-                            "isDropZone": false,
-                            "wordText": "は"
                         }
                     ]
                 },
@@ -29,7 +31,14 @@
             "wordGroupId": 1,
             "contents": {
                 "upper": {
-                    "contentType": "none"
+                    "contentType": "wordGroupCard",
+                    "wordList": [
+                        {
+                            "id": 2,
+                            "isDropZone": false,
+                            "wordText": "eats"
+                        }
+                    ]
                 },
                 "middle": {
                     "contentType": "wordGroupCard",
@@ -37,11 +46,6 @@
                         {
                             "id": 3,
                             "isDropZone": true
-                        },
-                        {
-                            "id": 5,
-                            "isDropZone": false,
-                            "wordText": "に"
                         }
                     ]
                 },
@@ -54,44 +58,22 @@
             "wordGroupId": 2,
             "contents": {
                 "upper": {
-                    "contentType": "none"
-                },
-                "middle": {
                     "contentType": "wordGroupCard",
                     "wordList": [
                         {
-                            "id": 6,
-                            "isDropZone": true
-                        },
-                        {
-                            "id": 8,
+                            "id": 4,
                             "isDropZone": false,
-                            "wordText": "を"
+                            "wordText": "lunch"
                         }
                     ]
                 },
-                "lower": {
-                    "contentType": "none"
-                }
-            }
-        },
-        {
-            "wordGroupId": 3,
-            "contents": {
-                "upper": {
-                    "contentType": "none"
-                },
                 "middle": {
                     "contentType": "wordGroupCard",
                     "wordList": [
                         {
-                            "id": 9,
-                            "isDropZone": true
-                        },
-                        {
-                            "id": 11,
-                            "isDropZone": false,
-                            "wordText": "ます"
+                            "id": 5,
+                            "isDropZone": true,
+                            "wordText": "lunch"
                         }
                     ]
                 },
@@ -103,6 +85,27 @@
     ],
     "draggableWordGroupList": [
         {
+            "wordGroupId": 3,
+            "contents": {
+                "upper": {
+                    "contentType": "none"
+                },
+                "middle": {
+                    "contentType": "wordGroupCard",
+                    "wordList": [
+                        {
+                            "id": 6,
+                            "isDropZone": false,
+                            "wordText": "S: 誰/何が・は"
+                        }
+                    ]
+                },
+                "lower": {
+                    "contentType": "none"
+                }
+            }
+        },
+        {
             "wordGroupId": 4,
             "contents": {
                 "upper": {
@@ -112,9 +115,9 @@
                     "contentType": "wordGroupCard",
                     "wordList": [
                         {
-                            "id": 1,
+                            "id": 7,
                             "isDropZone": false,
-                            "wordText": "Taro"
+                            "wordText": "V: どうする"
                         }
                     ]
                 },
@@ -133,51 +136,9 @@
                     "contentType": "wordGroupCard",
                     "wordList": [
                         {
-                            "id": 4,
+                            "id": 8,
                             "isDropZone": false,
-                            "wordText": "Pochi"
-                        }
-                    ]
-                },
-                "lower": {
-                    "contentType": "none"
-                }
-            }
-        },
-        {
-            "wordGroupId": 6,
-            "contents": {
-                "upper": {
-                    "contentType": "none"
-                },
-                "middle": {
-                    "contentType": "wordGroupCard",
-                    "wordList": [
-                        {
-                            "id": 7,
-                            "isDropZone": false,
-                            "wordText": "meat"
-                        }
-                    ]
-                },
-                "lower": {
-                    "contentType": "none"
-                }
-            }
-        },
-        {
-            "wordGroupId": 7,
-            "contents": {
-                "upper": {
-                    "contentType": "none"
-                },
-                "middle": {
-                    "contentType": "wordGroupCard",
-                    "wordList": [
-                        {
-                            "id": 10,
-                            "isDropZone": false,
-                            "wordText": "gives"
+                            "wordText": "DO: 誰/何を"
                         }
                     ]
                 },
@@ -187,6 +148,9 @@
             }
         }
     ],
-    "answer": "TaroはPochiにmeatをgivesます",
-    "referenceCentenceId": 1
+    "answerList": [
+        "S: 誰/何が・はV: どうするDO: 誰/何を"
+    ],
+    "referenceCentenceId": 0,
+    "mainMessage": "文法的なラベルをつけましょう"
 }

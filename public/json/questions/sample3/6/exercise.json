@@ -74,7 +74,12 @@
                         {
                             "id": 3,
                             "isDropZone": false,
-                            "wordText": "Taro"
+                            "wordText": "ポール"
+                        },
+                        {
+                            "id": 4,
+                            "isDropZone": false,
+                            "wordText": "は"
                         }
                     ]
                 },
@@ -93,9 +98,14 @@
                     "contentType": "wordGroupCard",
                     "wordList": [
                         {
-                            "id": 4,
+                            "id": 5,
                             "isDropZone": false,
-                            "wordText": "eats"
+                            "wordText": "食べ"
+                        },
+                        {
+                            "id": 6,
+                            "isDropZone": false,
+                            "wordText": "ます"
                         }
                     ]
                 },
@@ -114,9 +124,14 @@
                     "contentType": "wordGroupCard",
                     "wordList": [
                         {
-                            "id": 5,
+                            "id": 7,
                             "isDropZone": false,
-                            "wordText": "lunch"
+                            "wordText": "昼食"
+                        },
+                        {
+                            "id": 8,
+                            "isDropZone": false,
+                            "wordText": "を"
                         }
                     ]
                 },
@@ -126,6 +141,9 @@
             }
         }
     ],
-    "answer": "Taroeatslunch",
-    "referenceCentenceId": 4
+    "answerList": [
+        "ポールは昼食を食べます"
+    ],
+    "referenceCentenceId": 6,
+    "mainMessage": "英単語を和語に翻訳して和文を完成させましょう"
 }

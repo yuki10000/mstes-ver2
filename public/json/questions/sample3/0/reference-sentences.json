@@ -14,38 +14,7 @@
                             {
                                 "id": 0,
                                 "isDropZone": false,
-                                "wordText": "太郎は昼食を食べます"
-                            }
-                        ]
-                    },
-                    "lower": {
-                        "contentType": "none"
-                    }
-                }
-            }
-        ]
-    },
-    {
-        "sentenceId": 1,
-        "sentenceWordGroupList": [
-            {
-                "wordGroupId": 0,
-                "contents": {
-                    "upper": {
-                        "contentType": "none"
-                    },
-                    "middle": {
-                        "contentType": "wordGroupCard",
-                        "wordList": [
-                            {
-                                "id": 0,
-                                "isDropZone": false,
-                                "wordText": "太郎"
-                            },
-                            {
-                                "id": 1,
-                                "isDropZone": false,
-                                "wordText": "は"
+                                "wordText": "Paul"
                             }
                         ]
                     },
@@ -66,12 +35,7 @@
                             {
                                 "id": 0,
                                 "isDropZone": false,
-                                "wordText": "昼食"
-                            },
-                            {
-                                "id": 1,
-                                "isDropZone": false,
-                                "wordText": "を"
+                                "wordText": "eats"
                             }
                         ]
                     },
@@ -92,12 +56,7 @@
                             {
                                 "id": 0,
                                 "isDropZone": false,
-                                "wordText": "食べ"
-                            },
-                            {
-                                "id": 1,
-                                "isDropZone": false,
-                                "wordText": "ます"
+                                "wordText": "lunch"
                             }
                         ]
                     },

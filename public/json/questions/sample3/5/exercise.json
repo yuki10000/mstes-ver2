@@ -4,12 +4,7 @@
             "wordGroupId": 0,
             "contents": {
                 "upper": {
-                    "contentType": "label",
-                    "labelSettings": {
-                        "labelText": "S: 誰/何が・は",
-                        "isLineUpper": false,
-                        "isLineLower": true
-                    }
+                    "contentType": "none"
                 },
                 "middle": {
                     "contentType": "wordGroupCard",
@@ -29,12 +24,7 @@
             "wordGroupId": 1,
             "contents": {
                 "upper": {
-                    "contentType": "label",
-                    "labelSettings": {
-                        "labelText": "V: どうする",
-                        "isLineUpper": false,
-                        "isLineLower": true
-                    }
+                    "contentType": "none"
                 },
                 "middle": {
                     "contentType": "wordGroupCard",
@@ -54,12 +44,7 @@
             "wordGroupId": 2,
             "contents": {
                 "upper": {
-                    "contentType": "label",
-                    "labelSettings": {
-                        "labelText": "DO: 誰/何・を",
-                        "isLineUpper": false,
-                        "isLineLower": true
-                    }
+                    "contentType": "none"
                 },
                 "middle": {
                     "contentType": "wordGroupCard",
@@ -89,7 +74,7 @@
                         {
                             "id": 3,
                             "isDropZone": false,
-                            "wordText": "Taro"
+                            "wordText": "ポール"
                         },
                         {
                             "id": 4,
@@ -115,7 +100,7 @@
                         {
                             "id": 5,
                             "isDropZone": false,
-                            "wordText": "eats"
+                            "wordText": "食べ"
                         },
                         {
                             "id": 6,
@@ -141,7 +126,7 @@
                         {
                             "id": 7,
                             "isDropZone": false,
-                            "wordText": "lunch"
+                            "wordText": "昼食"
                         },
                         {
                             "id": 8,
@@ -156,6 +141,9 @@
             }
         }
     ],
-    "answer": "Taroはeatsますlunchを",
-    "referenceCentenceId": 3
+    "answerList": [
+        "昼食をポールは食べます"
+    ],
+    "referenceCentenceId": 5,
+    "mainMessage": "英単語を和語に翻訳して和文を完成させましょう"
 }

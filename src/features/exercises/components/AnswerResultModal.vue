@@ -7,14 +7,15 @@
         </v-icon>
         <span class="ml-2">{{ isCorrect ? '正解です！' : '不正解です' }}</span>
       </v-card-title>
-      <v-card-text v-if="!isCorrect" class="text-center">
-        <div class="mt-2">
+      <v-card-text class="text-center">
+        <div v-if="!isCorrect" class="mt-2">
           <span>あなたの回答: </span>
           <span class="font-weight-bold">{{ answerString }}</span>
         </div>
       </v-card-text>
       <v-card-actions class="justify-center">
-        <v-btn color="primary" @click="$emit('close')">閉じる</v-btn>
+        <v-btn v-if="isCorrect" color="primary" @click="$emit('next')">次の問題に進む</v-btn>
+        <v-btn v-else color="primary" @click="$emit('close')">閉じる</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -26,7 +27,8 @@ defineProps({
   isCorrect: Boolean,
   answerString: String,
 })
-const emit = defineEmits(['close', 'update:modelValue'])
+
+const emit = defineEmits(['close', 'update:modelValue', 'next'])
 
 function onUpdateModelValue(val: boolean) {
   if (!val) emit('close')

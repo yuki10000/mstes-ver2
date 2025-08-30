@@ -1,0 +1,123 @@
+{
+    "nodeList": [
+        {
+            "nodeId": 0,
+            "sentenceId": 0,
+            "translationId": 0
+        },
+        {
+            "nodeId": 1,
+            "sentenceId": 1,
+            "translationId": 1
+        },
+        {
+            "nodeId": 2,
+            "sentenceId": 2,
+            "translationId": 2
+        },
+        {
+            "nodeId": 3,
+            "sentenceId": 3,
+            "translationId": 3
+        },
+        {
+            "nodeId": 4,
+            "sentenceId": 4,
+            "translationId": 4
+        },
+        {
+            "nodeId": 5,
+            "sentenceId": 5,
+            "translationId": 5
+        },
+        {
+            "nodeId": 6,
+            "sentenceId": 6,
+            "translationId": 6
+        },
+        {
+            "nodeId": 7,
+            "sentenceId": 7,
+            "translationId": null
+        },
+        {
+            "nodeId": 8,
+            "sentenceId": 8,
+            "translationId": null
+        }
+    ],
+    "linkList": [
+        {
+            "linkId": 0,
+            "sourceNodeId": 0,
+            "targetNodeId": 1,
+            "isConnected": false,
+            "answer": [
+                "S: 誰/何が・はV: どうするDO: 誰/何を"
+            ]
+        },
+        {
+            "linkId": 1,
+            "sourceNodeId": 1,
+            "targetNodeId": 2,
+            "isConnected": false,
+            "answer": [
+                "Paulはeatsますlunchを"
+            ]
+        },
+        {
+            "linkId": 2,
+            "sourceNodeId": 2,
+            "targetNodeId": 3,
+            "isConnected": false,
+            "answer": [
+                "lunchをPaulはeatsます"
+            ]
+        },
+        {
+            "linkId": 3,
+            "sourceNodeId": 2,
+            "targetNodeId": 4,
+            "isConnected": false,
+            "answer": [
+                "Paulはlunchをeatsます"
+            ]
+        },
+        {
+            "linkId": 4,
+            "sourceNodeId": 3,
+            "targetNodeId": 5,
+            "isConnected": false,
+            "answer": [
+                "lunchをPaulはeatsます"
+            ]
+        },
+        {
+            "linkId": 5,
+            "sourceNodeId": 4,
+            "targetNodeId": 6,
+            "isConnected": false,
+            "answer": [
+                "Paulはlunchをeatsます"
+            ]
+        },
+        {
+            "linkId": 6,
+            "sourceNodeId": 5,
+            "targetNodeId": 7,
+            "isConnected": false,
+            "answer": [
+                "昼食をポールは食べます"
+            ]
+        },
+        {
+            "linkId": 7,
+            "sourceNodeId": 6,
+            "targetNodeId": 8,
+            "isConnected": false,
+            "answer": [
+                "ポールは昼食を食べます"
+            ]
+        }
+    ]
+}
